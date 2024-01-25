@@ -8,6 +8,8 @@ This the keybindings I kept note:
 
 ``alt + 1``: alternates between project and editor
 
-``alt + Insert`` New... (file, directory, etc)
+``alt + Insert``: New... (file, directory, etc)
+
+``ctrl + K``: git
 
 
