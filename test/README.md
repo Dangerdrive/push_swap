@@ -12,9 +12,9 @@ This the keybindings I kept note:
 
 ``ctrl + K``: commit dialog
 
+``ctrl + alt + 1``: open terminal
 
 clion . & disown
-
 
 To be able to use google test I had to set a Dockerfile
 1- Creates the image in docker, it must be run only once:
