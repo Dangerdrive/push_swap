@@ -18,8 +18,8 @@ clion . & disown
 
 To be able to use google test I had to set a Dockerfile
 1- Creates the image in docker, it must be run only once:
-docker build -t gtest .
-
+`docker build -t gtest .
+`
 2- Create container:
 docker run -v .:/push_swap_test -it gtest
 
