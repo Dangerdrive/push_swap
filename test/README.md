@@ -16,6 +16,11 @@ This the keybindings I kept note:
 
 clion . & disown
 
+docker build -t push_swap_test_image .
+
+
+
+
 To be able to use google test I had to set a Dockerfile
 1- Creates the image in docker, it must be run only once:
 `docker build -t gtest .
