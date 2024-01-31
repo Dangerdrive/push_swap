@@ -21,6 +21,7 @@ docker build -t push_swap_test_image .
 ```
 docker build is the command to build a Docker image.
 -t push_swap_test_image assigns a tag/name to your image, in this case, push_swap_test_image.
+you will do this once (except if you change container's configuration).
 
 ```bash
 docker run -it -v $(pwd):/push_swap_test push_swap_test_image
@@ -39,3 +40,9 @@ docker run -v .:/push_swap_test -it gtest
 
 3- Execute the tests:
 make runTests
+
+docker login
+docker tag push_swap_test_image dangerdrive/push_swap_gtest:latest
+docker push dangerdrive/push_swap_gtest:latest
+docker pull dangerdrive/push_swap_gtest:latest
+

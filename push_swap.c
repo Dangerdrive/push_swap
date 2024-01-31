@@ -5,6 +5,7 @@
 //
 #include "push_swap.h"
 
+
 //sa (swap a): Swap the first 2 elements at the top of stack a.
 //Do nothing if there is only one or no elements.
 
@@ -27,3 +28,48 @@
 //The last element becomes the first one.
 //rrr : rra and rrb at the same time.
 
+void	init_stack(t_stack_node stack)
+{
+	stack->value = 0;
+	stack->current_position = -1;
+	stack->final_index = -1;
+	stack->push_price = 0;
+	stack->above_median = false;
+	stack->cheapest = false;
+	stack->target_node = NULL;
+	stack->next = NULL;
+	stack->prev = NULL;
+}
+
+
+t_stack_node 	*load_stacks(s_stack_node **stacks)
+{
+	t_stack_node	*stack_a;
+	t_stack_node	*stack_b;
+
+	node = malloc(sizeof(t_list));
+	if (stack)
+		init_stack(stack)
+	return (node);
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+int main(int ac, char **av)
+{
+	t_stack_node **stacks;
+
+	init_stack(stacks);
+
+	return 0;
+}
