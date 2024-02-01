@@ -28,7 +28,7 @@
 //The last element becomes the first one.
 //rrr : rra and rrb at the same time.
 
-void	init_stack(t_stack_node stack)
+void	init_stack(s_stack_node stack)
 {
 	stack->value = 0;
 	stack->current_position = -1;
@@ -41,35 +41,46 @@ void	init_stack(t_stack_node stack)
 	stack->prev = NULL;
 }
 
-
-t_stack_node 	*load_stacks(s_stack_node **stacks)
+t_stack_node	malloc_node(s_stack_node node)
 {
-	t_stack_node	*stack_a;
-	t_stack_node	*stack_b;
-
-	node = malloc(sizeof(t_list));
-	if (stack)
-		init_stack(stack)
+	node = malloc(sizeof(t_stack_node));
+	if (node)
+		init_stack(node)
+	//else
+	//error handling
 	return (node);
 }
 
+//update prev
 
-
-
-
-
-
-
-
-
-
-
-
-int main(int ac, char **av)
+//load value
+s_stack_node	load_value(s_stack_node node, char *argv)
 {
-	t_stack_node **stacks;
+	malloc_node(node);
+	node.value = argv - '0';
+	node.
+}
 
-	init_stack(stacks);
 
-	return 0;
+int	main(int ac, char **av)
+{
+	t_stack_node	stack_a;
+	t_stack_node	stack_b;
+	int				i;
+
+	i = 0;
+//	if (ac <= 2)
+//		ft_printf("usage: ./push_swap");
+
+//malloc stack b
+	stack_b = load_stacks(stack_b);
+//while loop to feed stack a
+	while (i < ac)
+	{
+
+		(stack_a,av[i])
+	}
+
+
+	return (0);
 }
