@@ -10,9 +10,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="6e90e266-35e6-4895-a6ec-1e68266cd614" name="Changes" comment="jan26&#10;- Dockerfile for gtest added&#10;- Makefile added">
+      <change afterPath="$PROJECT_DIR$/test/tests/unit/NodeCreationTests.cpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/push_swap.c" beforeDir="false" afterPath="$PROJECT_DIR$/push_swap.c" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/push_swap.h" beforeDir="false" afterPath="$PROJECT_DIR$/push_swap.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test/swap_a_test.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/test/tests1/tests/handle_matrix/handle_matrix_test.cpp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/test/tests1/tests/main_test.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/test/tests/MainTests.cpp" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -95,6 +97,9 @@
       <recent name="$PROJECT_DIR$/test" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/test/tests" />
+      <recent name="$PROJECT_DIR$/test/tests/unit" />
+      <recent name="$PROJECT_DIR$" />
       <recent name="$PROJECT_DIR$/test" />
     </key>
   </component>
@@ -114,6 +119,7 @@
       <workItem from="1706579785857" duration="296000" />
       <workItem from="1706648908145" duration="10650000" />
       <workItem from="1706737358636" duration="4303000" />
+      <workItem from="1706820971417" duration="4733000" />
     </task>
     <task id="LOCAL-00001" summary="jan19">
       <option name="closed" value="true" />
