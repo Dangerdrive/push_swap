@@ -3,6 +3,9 @@
   <component name="AutoImportSettings">
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
+  <component name="CMakeRunConfigurationManager">
+    <generated />
+  </component>
   <component name="CMakeSettings">
     <configurations>
       <configuration PROFILE_NAME="Debug" ENABLED="true" CONFIG_NAME="Debug" />
@@ -10,11 +13,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="6e90e266-35e6-4895-a6ec-1e68266cd614" name="Changes" comment="jan26&#10;- Dockerfile for gtest added&#10;- Makefile added">
-      <change afterPath="$PROJECT_DIR$/test/tests/unit/NodeCreationTests.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/test/swap_a_test.c" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/test/tests1/tests/handle_matrix/handle_matrix_test.cpp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/test/tests1/tests/main_test.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/test/tests/MainTests.cpp" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -23,6 +23,11 @@
   </component>
   <component name="ClangdSettings">
     <option name="formatViaClangd" value="false" />
+  </component>
+  <component name="ExternalProjectsData">
+    <projectState path="$PROJECT_DIR$/test">
+      <ProjectState />
+    </projectState>
   </component>
   <component name="Git.Settings">
     <option name="PREVIOUS_COMMIT_AUTHORS">
@@ -36,6 +41,26 @@
     <option name="defaultAccountId" value="9350961c-1c5a-4bcd-b34c-18211fdcc780" />
   </component>
   <component name="MakefileLocalSettings">
+    <option name="availableProjects">
+      <map>
+        <entry>
+          <key>
+            <ExternalProjectPojo>
+              <option name="name" value="push_swap" />
+              <option name="path" value="$PROJECT_DIR$/test" />
+            </ExternalProjectPojo>
+          </key>
+          <value>
+            <list>
+              <ExternalProjectPojo>
+                <option name="name" value="push_swap" />
+                <option name="path" value="$PROJECT_DIR$/test" />
+              </ExternalProjectPojo>
+            </list>
+          </value>
+        </entry>
+      </map>
+    </option>
     <option name="projectSyncType">
       <map>
         <entry key="$PROJECT_DIR$/test" value="RE_IMPORT" />
@@ -103,6 +128,13 @@
       <recent name="$PROJECT_DIR$/test" />
     </key>
   </component>
+  <component name="RunManager">
+    <configuration default="true" type="CLionExternalRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" EMULATE_TERMINAL="false" PASS_PARENT_ENVS_2="true">
+      <method v="2">
+        <option name="CLION.EXTERNAL.BUILD" enabled="true" />
+      </method>
+    </configuration>
+  </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
@@ -119,7 +151,8 @@
       <workItem from="1706579785857" duration="296000" />
       <workItem from="1706648908145" duration="10650000" />
       <workItem from="1706737358636" duration="4303000" />
-      <workItem from="1706820971417" duration="4733000" />
+      <workItem from="1706820971417" duration="5344000" />
+      <workItem from="1707170336969" duration="1687000" />
     </task>
     <task id="LOCAL-00001" summary="jan19">
       <option name="closed" value="true" />
