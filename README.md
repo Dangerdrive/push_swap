@@ -46,3 +46,53 @@ docker tag push_swap_test_image dangerdrive/push_swap_gtest:latest
 docker push dangerdrive/push_swap_gtest:latest
 docker pull dangerdrive/push_swap_gtest:latest
 
+
+
+
+https://www.youtube.com/watch?v=wRvipSG4Mmk
+"turk algorythim" 
+we aim for just 3 positions on stack a.
+so if stack a size > 4, the first step is to move the two first positions from a to b.
+
+then for each a node you search for a target node in stack b.
+you search for the smallest closest number in b stack. If not found, the target node is the max value.
+
+cost analysis
+we need to check which move is 'cheaper'.
+To move a node from stack a to stack b, we would need to move the node to the top, and move its target to the top.
+
+push cost = operations to bring a node on top + operation to bring its target node to top
+
+so for instance, if the node we are calculating the cost is already on the top and its target is already on top on stack b, the cost will be 0.
+If the cost is 0, there is no need to calculate the cost for the rest of the nodes, we can just push that node to stack b.
+
+find target in b
+    
+
+find target in a
+
+
+
+push cost on stack
+    if first
+        cost = 0;
+    if last node
+        cost = 1;
+    if second node;
+        cost = 1;
+
+
+push cost (node, target)
+    push cost on stack(node) + push cost on stack (target)
+
+push to b(node)
+while number of nodes in stack a is > 3
+    find node's target
+    check push cost
+        if node's target = 0 
+            push
+        push cheapest
+sort 3
+
+push to a    
+    
