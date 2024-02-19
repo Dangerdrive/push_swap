@@ -7,16 +7,21 @@ set(CMAKE_CXX_STANDARD 11)
 # Google Test requires at least C++11
 enable_testing()
 
+# to with local gtest
 # Add Google Test subdirectory
 # This assumes that the Google Test library source is in 'libs/googletest'
-add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/../libs/googletest ${CMAKE_CURRENT_BINARY_DIR}/googletest)
+# add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/../libs/googletest ${CMAKE_CURRENT_BINARY_DIR}/googletest)
+
+# to run with gtest installed system wide
+# Find the Google Test package (looks for the installed library)
+find_package(GTest REQUIRED)
 
 # Include Google Test's and your project's include directories
 include_directories(${gtest_SOURCE_DIR}/include ${gtest_SOURCE_DIR})
 include_directories(${CMAKE_CURRENT_SOURCE_DIR}/../includes)
 
 # Define your test sources
-file(GLOB TEST_SOURCES "unit/*.cpp" "integration/*.cpp")
+file(GLOB TEST_SOURCES "tests/unit/*.cpp" "tests/integration/*.cpp")
 
 # Create test executables for each test source
 foreach(TEST_FILE ${TEST_SOURCES})

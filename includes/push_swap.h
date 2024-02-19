@@ -8,12 +8,10 @@
 # include <stdlib.h>
 # include <limits.h>
 # include <unistd.h>
+# include <stdbool.h>
+# include "../libs/ft_printf/ft_printf.h"
+# include "../libs/libft/libft.h"
 
-typedef enum e_bool
-{
-	false = 0,
-	true = 1
-}			 bool;
 
 typedef struct s_stack_node
 {
@@ -26,6 +24,6 @@ typedef struct s_stack_node
 	struct s_stack_node	*target_node;
 	struct s_stack_node	*next;
 	struct s_stack_node	*prev;
-}				t_stack_node;
+}   t_stack_node;
 
 #endif // PUSH_SWAP_H

@@ -4,7 +4,19 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="CMakeRunConfigurationManager">
-    <generated />
+    <generated>
+      <config projectName="push_swap" targetName="cmake_force" />
+      <config projectName="push_swap" targetName="edit_cache" />
+      <config projectName="push_swap" targetName="all" />
+      <config projectName="push_swap" targetName="help" />
+      <config projectName="push_swap" targetName="NodeCreationTests" />
+      <config projectName="push_swap" targetName="depend" />
+      <config projectName="push_swap" targetName="test" />
+      <config projectName="push_swap" targetName="default_target" />
+      <config projectName="push_swap" targetName="cmake_check_build_system" />
+      <config projectName="push_swap" targetName="rebuild_cache" />
+      <config projectName="push_swap" targetName="preinstall" />
+    </generated>
   </component>
   <component name="CMakeSettings">
     <configurations>
@@ -13,10 +25,104 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="6e90e266-35e6-4895-a6ec-1e68266cd614" name="Changes" comment="jan26&#10;- Dockerfile for gtest added&#10;- Makefile added">
-      <change afterPath="$PROJECT_DIR$/push_swap_visualizer" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/codeStyles/codeStyleConfig.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/libs/ft_printf/.vscode/settings.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/libs/ft_printf/Makefile" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/libs/ft_printf/ft_print_char.c" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/libs/ft_printf/ft_print_hex.c" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/libs/ft_printf/ft_print_nbr.c" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/libs/ft_printf/ft_print_ptr.c" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/libs/ft_printf/ft_print_str.c" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/libs/ft_printf/ft_print_unsig.c" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/libs/ft_printf/ft_printf.c" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/libs/ft_printf/ft_printf.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/libs/ft_printf/libftprintf.a" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/libs/ft_printf/program" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/libs/libft/Makefile" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/libs/libft/ft_atoi.c" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/libs/libft/ft_atol.c" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/libs/libft/ft_bzero.c" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/libs/libft/ft_calloc.c" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/libs/libft/ft_isalnum.c" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/libs/libft/ft_isalpha.c" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/libs/libft/ft_isascii.c" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/libs/libft/ft_isdigit.c" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/libs/libft/ft_isprint.c" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/libs/libft/ft_itoa.c" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/libs/libft/ft_itoa_base.c" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/libs/libft/ft_lstadd_back.c" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/libs/libft/ft_lstadd_front.c" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/libs/libft/ft_lstclear.c" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/libs/libft/ft_lstdelone.c" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/libs/libft/ft_lstiter.c" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/libs/libft/ft_lstlast.c" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/libs/libft/ft_lstmap.c" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/libs/libft/ft_lstnew.c" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/libs/libft/ft_lstsize.c" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/libs/libft/ft_memchr.c" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/libs/libft/ft_memcmp.c" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/libs/libft/ft_memcpy.c" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/libs/libft/ft_memmove.c" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/libs/libft/ft_memset.c" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/libs/libft/ft_numlen.c" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/libs/libft/ft_numlen_base.c" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/libs/libft/ft_putchar.c" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/libs/libft/ft_putchar_fd.c" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/libs/libft/ft_putendl_fd.c" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/libs/libft/ft_putnbr_fd.c" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/libs/libft/ft_putstr.c" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/libs/libft/ft_putstr_fd.c" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/libs/libft/ft_split.c" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/libs/libft/ft_strchr.c" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/libs/libft/ft_strdup.c" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/libs/libft/ft_string_toupper.c" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/libs/libft/ft_striteri.c" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/libs/libft/ft_strjoin.c" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/libs/libft/ft_strlcat.c" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/libs/libft/ft_strlcpy.c" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/libs/libft/ft_strlen.c" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/libs/libft/ft_strmapi.c" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/libs/libft/ft_strncmp.c" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/libs/libft/ft_strnstr.c" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/libs/libft/ft_strrchr.c" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/libs/libft/ft_strtrim.c" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/libs/libft/ft_substr.c" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/libs/libft/ft_tolower.c" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/libs/libft/ft_toupper.c" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/libs/libft/ft_uitoa_base.c" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/libs/libft/ft_unumlen_base.c" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/libs/libft/get_next_line.c" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/libs/libft/libft.a" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/libs/libft/libft.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/libs/libft/program" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/test/CMakeFiles/CMakeDirectoryInformation.cmake" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/test/CMakeFiles/Makefile.cmake" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/test/CMakeFiles/Makefile2" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/test/CMakeFiles/NodeCreationTests.dir/DependInfo.cmake" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/test/CMakeFiles/NodeCreationTests.dir/build.make" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/test/CMakeFiles/NodeCreationTests.dir/cmake_clean.cmake" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/test/CMakeFiles/NodeCreationTests.dir/compiler_depend.internal" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/test/CMakeFiles/NodeCreationTests.dir/compiler_depend.make" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/test/CMakeFiles/NodeCreationTests.dir/compiler_depend.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/test/CMakeFiles/NodeCreationTests.dir/depend.make" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/test/CMakeFiles/NodeCreationTests.dir/flags.make" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/test/CMakeFiles/NodeCreationTests.dir/link.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/test/CMakeFiles/NodeCreationTests.dir/progress.make" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/test/CMakeFiles/Progress/1" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/test/CMakeFiles/Progress/count.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/test/CMakeFiles/TargetDirectories.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/test/CMakeFiles/progress.marks" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/test/CTestTestfile.cmake" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/test/Makefile" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/test/Testing/Temporary/CTestCostData.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/test/Testing/Temporary/LastTest.log" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/test/cmake_install.cmake" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Makefile" beforeDir="false" afterPath="$PROJECT_DIR$/Makefile" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/push_swap.c" beforeDir="false" afterPath="$PROJECT_DIR$/src/push_swap.c" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/push_swap.h" beforeDir="false" afterPath="$PROJECT_DIR$/includes/push_swap.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test/CMakeLists.txt" beforeDir="false" afterPath="$PROJECT_DIR$/test/CMakeLists.txt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -104,7 +210,7 @@
     "cf.first.check.clang-format": "false",
     "cidr.known.project.marker": "true",
     "git-widget-placeholder": "main",
-    "last_opened_file_path": "/home/fde-alen/Downloads/continue-intellij-extension-0.0.27.zip",
+    "last_opened_file_path": "/home/fde-alen/Documents/push_swap/libs/libft",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
@@ -122,14 +228,91 @@
 }]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/libs/libft" />
       <recent name="$PROJECT_DIR$/test" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/includes" />
+      <recent name="$PROJECT_DIR$/src" />
       <recent name="$PROJECT_DIR$/test/tests" />
       <recent name="$PROJECT_DIR$/test/tests/unit" />
       <recent name="$PROJECT_DIR$" />
-      <recent name="$PROJECT_DIR$/test" />
     </key>
+  </component>
+  <component name="RunManager" selected="Native Application.all">
+    <configuration name="NodeCreationTests" type="CLionNativeAppRunConfigurationType" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" EMULATE_TERMINAL="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="push_swap" TARGET_NAME="NodeCreationTests" CONFIG_NAME="NodeCreationTests" version="1">
+      <method v="2">
+        <option name="CLION.COMPOUND.BUILD" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="all" type="CLionNativeAppRunConfigurationType" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" EMULATE_TERMINAL="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="push_swap" TARGET_NAME="all" CONFIG_NAME="all" version="1">
+      <method v="2">
+        <option name="CLION.COMPOUND.BUILD" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="cmake_check_build_system" type="CLionNativeAppRunConfigurationType" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" EMULATE_TERMINAL="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="push_swap" TARGET_NAME="cmake_check_build_system" CONFIG_NAME="cmake_check_build_system" version="1">
+      <method v="2">
+        <option name="CLION.COMPOUND.BUILD" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="cmake_force" type="CLionNativeAppRunConfigurationType" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" EMULATE_TERMINAL="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="push_swap" TARGET_NAME="cmake_force" CONFIG_NAME="cmake_force" version="1">
+      <method v="2">
+        <option name="CLION.COMPOUND.BUILD" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="default_target" type="CLionNativeAppRunConfigurationType" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" EMULATE_TERMINAL="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="push_swap" TARGET_NAME="default_target" CONFIG_NAME="default_target" version="1">
+      <method v="2">
+        <option name="CLION.COMPOUND.BUILD" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="depend" type="CLionNativeAppRunConfigurationType" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" EMULATE_TERMINAL="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="push_swap" TARGET_NAME="depend" CONFIG_NAME="depend" version="1">
+      <method v="2">
+        <option name="CLION.COMPOUND.BUILD" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="edit_cache" type="CLionNativeAppRunConfigurationType" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" EMULATE_TERMINAL="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="push_swap" TARGET_NAME="edit_cache" CONFIG_NAME="edit_cache" version="1">
+      <method v="2">
+        <option name="CLION.COMPOUND.BUILD" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="help" type="CLionNativeAppRunConfigurationType" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" EMULATE_TERMINAL="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="push_swap" TARGET_NAME="help" CONFIG_NAME="help" version="1">
+      <method v="2">
+        <option name="CLION.COMPOUND.BUILD" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="preinstall" type="CLionNativeAppRunConfigurationType" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" EMULATE_TERMINAL="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="push_swap" TARGET_NAME="preinstall" CONFIG_NAME="preinstall" version="1">
+      <method v="2">
+        <option name="CLION.COMPOUND.BUILD" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="rebuild_cache" type="CLionNativeAppRunConfigurationType" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" EMULATE_TERMINAL="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="push_swap" TARGET_NAME="rebuild_cache" CONFIG_NAME="rebuild_cache" version="1">
+      <method v="2">
+        <option name="CLION.COMPOUND.BUILD" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="test" type="CLionNativeAppRunConfigurationType" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" EMULATE_TERMINAL="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="push_swap" TARGET_NAME="test" CONFIG_NAME="test" version="1">
+      <method v="2">
+        <option name="CLION.COMPOUND.BUILD" enabled="true" />
+      </method>
+    </configuration>
+    <configuration default="true" type="CMakeRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" EMULATE_TERMINAL="false" PASS_PARENT_ENVS_2="true">
+      <method v="2">
+        <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
+      </method>
+    </configuration>
+    <list>
+      <item itemvalue="Native Application.all" />
+      <item itemvalue="Native Application.cmake_check_build_system" />
+      <item itemvalue="Native Application.cmake_force" />
+      <item itemvalue="Native Application.default_target" />
+      <item itemvalue="Native Application.depend" />
+      <item itemvalue="Native Application.edit_cache" />
+      <item itemvalue="Native Application.help" />
+      <item itemvalue="Native Application.NodeCreationTests" />
+      <item itemvalue="Native Application.preinstall" />
+      <item itemvalue="Native Application.rebuild_cache" />
+      <item itemvalue="Native Application.test" />
+    </list>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
@@ -150,7 +333,14 @@
       <workItem from="1706820971417" duration="5344000" />
       <workItem from="1707170336969" duration="1687000" />
       <workItem from="1707687833139" duration="2434000" />
-      <workItem from="1708268864789" duration="5301000" />
+      <workItem from="1708268864789" duration="5923000" />
+      <workItem from="1708278331744" duration="1158000" />
+      <workItem from="1708280841324" duration="541000" />
+      <workItem from="1708281727571" duration="232000" />
+      <workItem from="1708282156670" duration="4000" />
+      <workItem from="1708300193956" duration="2059000" />
+      <workItem from="1708307156101" duration="5108000" />
+      <workItem from="1708313221454" duration="1154000" />
     </task>
     <task id="LOCAL-00001" summary="jan19">
       <option name="closed" value="true" />
@@ -220,7 +410,7 @@
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
-          <url>file://$PROJECT_DIR$/push_swap.h</url>
+          <url>file://$PROJECT_DIR$/includes/push_swap.h</url>
           <line>14</line>
           <option name="timeStamp" value="1" />
         </line-breakpoint>

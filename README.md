@@ -67,10 +67,12 @@ so for instance, if the node we are calculating the cost is already on the top a
 If the cost is 0, there is no need to calculate the cost for the rest of the nodes, we can just push that node to stack b.
 
 find target in b
-    
+    find closest smaller
+    if not found, target = max
 
 find target in a
-
+    find closest bigger
+    if not found, target = min
 
 
 push cost on stack
@@ -95,4 +97,37 @@ while number of nodes in stack a is > 3
 sort 3
 
 push to a    
+
+put smallest on the top
+
+
+
+
+
+Pseudocode:
+
+// Initialize stack pointers
+// Declare and set two pointers for stack 'a' and 'b' to NULL to represent empty stacks
+
+// Validate input count
+// Ensure the number of command line arguments is greater than one (excluding the program name)
+// Return an error if the argument count is insufficient
+
+// Process input
+// Account for input given directly as arguments or as a single string needing separation
+// If input is a single string, use 'split()' to divide it into individual numbers
+
+// Populate stack 'a'
+// For each number in the input:
+//   Validate the number, ensuring it is a valid integer and within the range of 'long int'
+//   Check for duplicates and correct syntax (only digits, '-', '+', and no leading zeros)
+//   If any validations fail, deallocate stack 'a' and return an error
+//   Otherwise, create a new node with the number and append it to stack 'a'
+
+// Verify if stack 'a' is pre-sorted
+// If stack 'a' is not sorted:
+//   Apply the appropriate sorting algorithm based on the number of nodes:
+//     If there are only two nodes, swap them to sort
+//     If there are three nodes, use a 'sort_three' algorithm
+//     For more than three nodes, apply the 'Turk Algorithm' for sorting
     

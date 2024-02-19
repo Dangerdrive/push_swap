@@ -3,7 +3,7 @@
 //
 // Created by fde-alen on 1/24/24.
 //
-#include "push_swap.h"
+#include "../includes/push_swap.h"
 
 
 //sa (swap a): Swap the first 2 elements at the top of stack a.
@@ -41,46 +41,30 @@ void	init_stack(s_stack_node stack)
 	stack->prev = NULL;
 }
 
-t_stack_node	malloc_node(s_stack_node node)
-{
-	node = malloc(sizeof(t_stack_node));
-	if (node)
-		init_stack(node)
-	//else
-	//error handling
-	return (node);
-}
-
-//update prev
-
-//load value
-s_stack_node	load_value(s_stack_node node, char *argv)
-{
-	malloc_node(node);
-	node.value = argv - '0';
-	node.
-}
 
 
-int	main(int ac, char **av)
-{
-	t_stack_node	stack_a;
-	t_stack_node	stack_b;
-	int				i;
 
-	i = 0;
-//	if (ac <= 2)
-//		ft_printf("usage: ./push_swap");
+int	main(int ac, char **av) {
+	t_stack_node stack_a;
+	t_stack_node stack_b;
 
-//malloc stack b
-	stack_b = load_stacks(stack_b);
-//while loop to feed stack a
-	while (i < ac)
-	{
+	stack_a = NULL;
+	stack_b = NULL;
 
-		(stack_a,av[i])
+	if (ac == 1 || (ac == 2 && !av[1][0]))
+		return (1); //create error message
+	else if (ac == 2)
+		av = ft_split(av[1], ' ');
+	init_stack_a(&stack_a, av + 1)
+	if (!stack_sorted(stack_a)) {
+		if (stack_len(stack_a))
+			sa(&stack_a, false);
+		else_if(stack_len(stack_a == 3))
+		sort_three(&stack_a);
+		else
+		sort_stacks(&stack_a, &stack_b)
 	}
-
-
+	free_stacks(&stack_a);
 	return (0);
 }
+

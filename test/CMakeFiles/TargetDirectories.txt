@@ -1,0 +1,4 @@
+/home/fde-alen/Documents/push_swap/test/CMakeFiles/NodeCreationTests.dir
+/home/fde-alen/Documents/push_swap/test/CMakeFiles/test.dir
+/home/fde-alen/Documents/push_swap/test/CMakeFiles/edit_cache.dir
+/home/fde-alen/Documents/push_swap/test/CMakeFiles/rebuild_cache.dir

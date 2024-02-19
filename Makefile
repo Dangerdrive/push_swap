@@ -52,28 +52,28 @@
 #valgrind: $(NAME)
 #	@$(LEAKS) ./$(NAME)
 
-NAME		:= pipex
-CC			:= cc
-CFLAGS		:= -Wextra -Wall -Werror -Wunreachable-code -Iinclude
+NAME        := pipex
+CC          := cc
+CFLAGS      := -Wextra -Wall -Werror -Iincludes
 
-LEAKS		:= valgrind --leak-check=full --show-leak-kinds=all
-SRCS		:= $(wildcard ./*.c)
-TEST_SRCS	:= $(wildcard ./test/*.cpp) # assuming your test files are in ./test/
-OBJDIR		:= obj
-OBJS		:= $(SRCS:%.c=$(OBJDIR)/%.o)
-TEST_OBJS	:= $(TEST_SRCS:%.cpp=$(OBJDIR)/%.o)
+LEAKS       := valgrind --leak-check=full --show-leak-kinds=all
+SRCS        := $(wildcard src/*.c)
+TEST_SRCS   := $(wildcard test/*.cpp) # assuming your test files are in ./test/
+OBJDIR      := obj
+OBJS        := $(SRCS:src/%.c=$(OBJDIR)/%.o)
+TEST_OBJS   := $(TEST_SRCS:test/%.cpp=$(OBJDIR)/%.o)
 
 .PHONY: all clean fclean re valgrind test
 
-GTEST_DIR	:= /path/to/gtest
-GTEST_FLAGS	:= -I$(GTEST_DIR)/include -L$(GTEST_DIR)/lib -lgtest -lgtest_main -pthread
+GTEST_DIR   := /path/to/gtest # Make sure this is the correct path to your Google Test installation
+GTEST_FLAGS := -I$(GTEST_DIR)/include -L$(GTEST_DIR)/lib -lgtest -lgtest_main -pthread
 
 all: $(NAME)
 
 $(NAME): $(OBJS)
 	@$(CC) $(OBJS) -o $(NAME)
 
-$(OBJDIR)/%.o: %.c | $(OBJDIR)
+$(OBJDIR)/%.o: src/%.c | $(OBJDIR)
 	@$(CC) $(CFLAGS) -c $< -o $@
 
 $(OBJDIR):
@@ -88,12 +88,13 @@ fclean: clean
 re: fclean all
 
 # Test rule
+test: CFLAGS += $(GTEST_FLAGS)
 test: $(TEST_OBJS) $(OBJS)
-	@$(CC) $(TEST_OBJS) $(OBJS) $(GTEST_FLAGS) -o runTests
+	@$(CC) $(TEST_OBJS) $(OBJS) -o runTests
 	@./runTests
 
-$(OBJDIR)/%.o: %.cpp | $(OBJDIR)
-	@$(CC) $(CFLAGS) $(GTEST_FLAGS) -c $< -o $@
+$(OBJDIR)/%.o: test/%.cpp | $(OBJDIR)
+	@$(CC) $(CFLAGS) -c $< -o $@
 
 valgrind: $(NAME)
 	@$(LEAKS) ./$(NAME)
