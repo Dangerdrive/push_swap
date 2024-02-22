@@ -41,7 +41,50 @@ void	init_stack(s_stack_node stack)
 	stack->prev = NULL;
 }
 
+void	append_node(t_stack_node **stack, int value)
+{
+	t_stack_node	*node;
+	t_stack_node	*last_node;
 
+	if (!stack)
+		return;
+	node = malloc(sizeof(t_stack_node));
+	if (!node)
+		return;
+	node->next = NULL;
+	node->value = value;
+	if (!(*stack))
+	{
+		*stack = node;
+		node->prev = NULL;
+	}
+	else
+	{
+		last_node = find_last(*stack);
+		last_node-> = node;
+		node->prev = last_node;
+	}
+}
+
+void	init_stack_a(t_stack_node **a, char **av)
+{
+	long	value;
+	int		i;
+
+	i = 0;
+	while (av[i])
+	{
+		if (error_sintax(av[i]))
+			free_errors(a);
+		value = atol(av[i])
+		if (value > INT_MAX || value < INT_MIN)
+			free_errors(a);
+		if (duplicate_value(*a, value)) // int(value)
+			free_errors(a);
+		append_node(a); //node add back
+		i++;
+}
+}
 
 
 int	main(int ac, char **av) {
@@ -55,14 +98,15 @@ int	main(int ac, char **av) {
 		return (1); //create error message
 	else if (ac == 2)
 		av = ft_split(av[1], ' ');
-	init_stack_a(&stack_a, av + 1)
-	if (!stack_sorted(stack_a)) {
+	init_stack_a(&stack_a, av + 1);
+	if (!stack_sorted(stack_a))
+	{
 		if (stack_len(stack_a))
 			sa(&stack_a, false);
-		else_if(stack_len(stack_a == 3))
-		sort_three(&stack_a);
+		else if(stack_len(&stack_a == 3))
+			sort_three(&stack_a);
 		else
-		sort_stacks(&stack_a, &stack_b)
+		sort_stacks(&stack_a, &stack_b);
 	}
 	free_stacks(&stack_a);
 	return (0);

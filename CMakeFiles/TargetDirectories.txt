@@ -1,0 +1,7 @@
+/home/fde-alen/Documents/push_swap/CMakeFiles/push_swap.dir
+/home/fde-alen/Documents/push_swap/CMakeFiles/valgrind.dir
+/home/fde-alen/Documents/push_swap/CMakeFiles/cleanall.dir
+/home/fde-alen/Documents/push_swap/CMakeFiles/fclean.dir
+/home/fde-alen/Documents/push_swap/CMakeFiles/test.dir
+/home/fde-alen/Documents/push_swap/CMakeFiles/edit_cache.dir
+/home/fde-alen/Documents/push_swap/CMakeFiles/rebuild_cache.dir

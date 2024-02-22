@@ -1,0 +1,1 @@
+/usr/bin/cc CMakeFiles/push_swap.dir/src/push_swap.c.o -o push_swap 
