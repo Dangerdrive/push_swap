@@ -25,55 +25,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="6e90e266-35e6-4895-a6ec-1e68266cd614" name="Changes" comment="jan26&#10;- Dockerfile for gtest added&#10;- Makefile added">
-      <change afterPath="$PROJECT_DIR$/CMakeCache.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/CMakeFiles/3.22.1/CMakeCCompiler.cmake" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/CMakeFiles/3.22.1/CMakeDetermineCompilerABI_C.bin" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/CMakeFiles/3.22.1/CMakeSystem.cmake" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/CMakeFiles/3.22.1/CompilerIdC/CMakeCCompilerId.c" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/CMakeFiles/CMakeDirectoryInformation.cmake" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/CMakeFiles/CMakeOutput.log" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/CMakeFiles/CMakeRuleHashes.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/CMakeFiles/Makefile.cmake" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/CMakeFiles/Makefile2" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/CMakeFiles/TargetDirectories.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/CMakeFiles/cleanall.dir/DependInfo.cmake" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/CMakeFiles/cleanall.dir/build.make" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/CMakeFiles/cleanall.dir/cmake_clean.cmake" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/CMakeFiles/cleanall.dir/compiler_depend.make" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/CMakeFiles/cleanall.dir/compiler_depend.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/CMakeFiles/cleanall.dir/progress.make" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/CMakeFiles/cmake.check_cache" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/CMakeFiles/fclean.dir/DependInfo.cmake" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/CMakeFiles/fclean.dir/build.make" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/CMakeFiles/fclean.dir/cmake_clean.cmake" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/CMakeFiles/fclean.dir/compiler_depend.make" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/CMakeFiles/fclean.dir/compiler_depend.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/CMakeFiles/fclean.dir/progress.make" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/CMakeFiles/progress.marks" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/CMakeFiles/push_swap.dir/DependInfo.cmake" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/CMakeFiles/push_swap.dir/build.make" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/CMakeFiles/push_swap.dir/cmake_clean.cmake" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/CMakeFiles/push_swap.dir/compiler_depend.make" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/CMakeFiles/push_swap.dir/compiler_depend.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/CMakeFiles/push_swap.dir/depend.make" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/CMakeFiles/push_swap.dir/flags.make" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/CMakeFiles/push_swap.dir/link.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/CMakeFiles/push_swap.dir/progress.make" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/CMakeFiles/valgrind.dir/DependInfo.cmake" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/CMakeFiles/valgrind.dir/build.make" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/CMakeFiles/valgrind.dir/cmake_clean.cmake" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/CMakeFiles/valgrind.dir/compiler_depend.make" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/CMakeFiles/valgrind.dir/compiler_depend.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/CMakeFiles/valgrind.dir/progress.make" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/CMakeLists.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/CTestTestfile.cmake" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/cmake_install.cmake" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/test/Testing/Temporary/LastTestsFailed.log" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Makefile" beforeDir="false" afterPath="$PROJECT_DIR$/Makefile" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/test/CMakeLists.txt" beforeDir="false" afterPath="$PROJECT_DIR$/test/CMakeLists.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/test/Testing/Temporary/CTestCostData.txt" beforeDir="false" afterPath="$PROJECT_DIR$/test/Testing/Temporary/CTestCostData.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/test/Testing/Temporary/LastTest.log" beforeDir="false" afterPath="$PROJECT_DIR$/test/Testing/Temporary/LastTest.log" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -303,6 +255,8 @@
       <workItem from="1708382209840" duration="150000" />
       <workItem from="1708385532494" duration="1939000" />
       <workItem from="1708396336673" duration="2061000" />
+      <workItem from="1708615469064" duration="737000" />
+      <workItem from="1708616604706" duration="1011000" />
     </task>
     <task id="LOCAL-00001" summary="jan19">
       <option name="closed" value="true" />

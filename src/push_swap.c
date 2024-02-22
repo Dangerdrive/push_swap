@@ -41,28 +41,143 @@ void	init_stack(s_stack_node stack)
 	stack->prev = NULL;
 }
 
+void	current_index(t_stack_node *stack)
+{
+	int	i;
+	int	median;
+
+	i = 0;
+	if (!stack)
+		return ;
+	median = stack_len(stack) / 2;
+	while (stack)
+	{
+		stack->index = i;
+		if (i <= median)
+			stack->above_median = true;
+		else
+			stack->above_median = false;
+		stack = stack->next;
+		i++; //++i
+	}
+}
+
+void	set_target_a(s_stack_node *a, s_stack_node *b)
+{
+	t_stack_node	*current_b;
+	t_stack_node	*target_node;
+	long			match_index;
+
+	while (a)
+	{
+		if (current_b->value < a->value && current_b->value > match_index)
+		{
+
+		}
+	}
+}
+
+void	init_nodes_a(t_stack_node *a, t_stack_node *b)
+{
+	current_index(a);
+	current_index(b);
+	set_target_a(a, b);
+	cost_analysis_a(a, b);
+	set_cheapest(a);
+}
+
+void	sort_stacks(t_stack_node **a, t_stack_node **b)
+{
+	size_t	len_a;
+
+	len_a = stack_len(*a);
+	if (len_a-- > 3 && !stack_sorted(*a))
+		pb(b, a, false);
+	if (len_a-- > 3 && !stack_sorted(*a))
+		pb(b, a, false);
+	while (len_a-- > 3 !stack_sorted(*a))
+	{
+		init_nodes_a(*a, *b);
+		move_a_to_b(a, b);
+	}
+	sort_three(a);
+	while (*b)
+	{
+		init_nodes_b(*a, *b);
+		move_b_to_a(a, b);
+	}
+	current_index(*a);
+	min_on_top(a);
+}
+
+void	sort_three(t_stack_node **a)
+{
+	t_stack_node	*biggest_node;
+
+	biggest_node = find_max(*a);
+	if (biggest_node == *a)
+		ra(a, false)
+	else if ((*a)->next == biggest_node)
+		rra(a, false)
+	if ((*a)->value > (*a)->next->value)
+		sa(a, false)
+}
+
+bool	stack_sorted(t_stack_node *stack)
+{
+	if (!stack)
+		return (false);
+	while (stack->next)
+	{
+		if (stack->value > stack->next->value)
+			return (false);
+		stack = stack->next;
+	}
+	return (true);
+}
+
+t_stack_node	*find_min(s_stack_node *stack)
+{
+	long			min;
+	t_stack_node	*min_node;
+
+	if (!stack)
+		return (NULL);
+	min = LONG_MAX;
+	while (stack)
+	{
+		if (stack->value < min)
+		{
+			min = stack->value;
+			min_node = stack;
+		}
+		stack = stack->next;
+	}
+	return (min_node);
+}
+
 void	append_node(t_stack_node **stack, int value)
 {
-	t_stack_node	*node;
+	t_stack_node	*new_node;
 	t_stack_node	*last_node;
 
 	if (!stack)
 		return;
-	node = malloc(sizeof(t_stack_node));
-	if (!node)
+	new_node = malloc(sizeof(t_stack_node));
+	if (!new_node)
 		return;
-	node->next = NULL;
-	node->value = value;
+	new_node->next = NULL;
+	new_node->value = value;
 	if (!(*stack))
 	{
-		*stack = node;
-		node->prev = NULL;
+		*stack = new_node;
+		new_node->prev = NULL;
 	}
 	else
 	{
 		last_node = find_last(*stack);
-		last_node-> = node;
-		node->prev = last_node;
+		last_node->next = new_node;
+		new_node->prev = last_node;
 	}
 }
 
@@ -76,12 +191,12 @@ void	init_stack_a(t_stack_node **a, char **av)
 	{
 		if (error_sintax(av[i]))
 			free_errors(a);
-		value = atol(av[i])
+		value = atol(av[i]);
 		if (value > INT_MAX || value < INT_MIN)
 			free_errors(a);
-		if (duplicate_value(*a, value)) // int(value)
+		if (duplicate_value(*a, (int)value)) // int(value)
 			free_errors(a);
-		append_node(a); //node add back
+		append_node(a, (int)value); //node add back
 		i++;
 }
 }
