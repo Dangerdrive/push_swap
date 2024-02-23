@@ -28,7 +28,7 @@
 //The last element becomes the first one.
 //rrr : rra and rrb at the same time.
 
-void	init_stack(s_stack_node stack)
+void	init_stack(t_stack_node stack)
 {
 	stack->value = 0;
 	stack->current_position = -1;
@@ -52,7 +52,7 @@ void	current_index(t_stack_node *stack)
 	median = stack_len(stack) / 2;
 	while (stack)
 	{
-		stack->index = i;
+		stack->index = i; //curent_position or final_index
 		if (i <= median)
 			stack->above_median = true;
 		else
@@ -143,7 +143,7 @@ void	sort_stacks(t_stack_node **a, t_stack_node **b)
 		pb(b, a, false);
 	if (len_a-- > 3 && !stack_sorted(*a))
 		pb(b, a, false);
-	while (len_a-- > 3 !stack_sorted(*a))
+	while (len_a-- > 3 && !stack_sorted(*a))
 	{
 		init_nodes_a(*a, *b);
 		move_a_to_b(a, b);
@@ -164,11 +164,11 @@ void	sort_three(t_stack_node **a)
 
 	biggest_node = find_max(*a);
 	if (biggest_node == *a)
-		ra(a, false)
+		ra(a, false);
 	else if ((*a)->next == biggest_node)
-		rra(a, false)
+		rra(a, false);
 	if ((*a)->value > (*a)->next->value)
-		sa(a, false)
+		sa(a, false);
 }
 
 bool	stack_sorted(t_stack_node *stack)
@@ -184,7 +184,7 @@ bool	stack_sorted(t_stack_node *stack)
 	return (true);
 }
 
-t_stack_node	*find_min(s_stack_node *stack)
+t_stack_node	*find_min(t_stack_node *stack)
 {
 	long			min;
 	t_stack_node	*min_node;
