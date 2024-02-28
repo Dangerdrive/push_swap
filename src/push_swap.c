@@ -41,6 +41,108 @@
 // 	stack->prev = NULL;
 // }
 /*movements*/
+/*push.c*/
+void	push(t_stack_node **dest, t_stack_node **src)
+{
+	t_stack_node	*push_node;
+
+	if (!*src)
+		return ;
+	push_node = *src;
+	*src = (*src)->next;
+	if (*src)
+		(*src)->prev = NULL;
+	if (!*dest)
+	{
+		*dest = push_node;
+		push_node->next = NULL;
+	}
+	else
+	{
+		push_node->next = *dest;
+		push_node->next->prev = push_node;
+		*dest = push_node;
+	}
+}
+
+void	pa(t_stack_node **a, t_stack_node **b, bool print)
+{
+	push(a, b);
+	if (!print)
+		ft_printf("pa\n");
+}
+
+void	pb(t_stack_node **a, t_stack_node **b, bool print)
+{
+	push(b, a);
+	if (!print)
+		ft_printf("pb\n");
+}
+
+/*reverse_rotate.c*/
+void	reverse_rotate(t_stack_node **stack)
+{
+	t_stack_node	*last_node;
+
+	if (!*stack || !(*stack)->next)
+		return ;
+	last_node = find_last(*stack);
+	last_node->prev->next = NULL;
+	last_node->next = *stack;
+	last_node->prev = NULL;
+	*stack = last_node;
+	last_node->next->prev = last_node;
+}
+
+void	rra(t_stack_node **a, bool print)
+{
+	reverse_rotate(a);
+	if (!print)
+		ft_printf("rra\n");
+}
+
+void	rrb(t_stack_node **b, bool print)
+{
+	reverse_rotate(b);
+	if (!print)
+		ft_printf("rrb\n");
+}
+
+void	rrr(t_stack_node **a, t_stack_node **b, bool print)
+{
+	reverse_rotate(a);
+	reverse_rotate(b);
+	if (!print)
+		ft_printf("rrr\n");
+}
+
+/*rotate*/
+void	rotate(t_stack_node **stack)
+{
+	t_stack_node	*last_node;
+
+	if (!*stack || ! (*stack)->next)
+		return ;
+	last_node = find_last(*stack);
+	last_node->next = *stack;
+	*stack = (*stack)->next;
+	(*stack)->next->prev = last_node;
+	last_node->next->next = NULL;
+}
+
+void	ra(t_stack_node **a, bool print)
+{
+	rotate(a);
+	if (!print)
+		ft_printf("ra\n");
+}
+
+void	rb(t_stack_node **b, bool print)
+{
+	rotate(b);
+	if (!print)
+		ft_printf("rb\n");
+}
 
 void	rr(t_stack_node **a, t_stack_node **b, bool print)
 {
@@ -49,6 +151,44 @@ void	rr(t_stack_node **a, t_stack_node **b, bool print)
 	if (!print)
 		ft_printf("rr\n");
 }
+
+/*swap*/
+void	swap(t_stack_node **stack)
+{
+	if (!*stack || !(*stack)->next)
+		return ;
+	*stack = (*stack)->next;
+	(*stack)->prev->prev = *stack;
+	(*stack)->prev->next = (*stack)->next;
+	if ((*stack)->next)
+		(*stack)->next->prev = (*stack)->prev;
+	(*stack)->next = (*stack)->prev;
+	(*stack)->prev = NULL;
+}
+
+void	sa(t_stack_node **a, bool print)
+{
+	swap(a);
+	if (!print)
+		ft_printf("sa\n");
+}
+
+void	sb(t_stack_node **b, bool print)
+{
+	swap(b);
+	if (!print)
+		ft_printf("sb\n");
+}
+
+void	ss(t_stack_node **a, t_stack_node **b, bool print)
+{
+	swap(a);
+	swap(b);
+	if (!print)
+		ft_printf("ss\n");
+}
+
+
 
 void	rotate_both(t_stack_node **a, t_stack_node **b,
 	t_stack_node *cheapest_node)
@@ -59,26 +199,13 @@ void	rotate_both(t_stack_node **a, t_stack_node **b,
 	current_index(*b);
 }
 
-void	prep_for_push(t_stack_node **stack, t_stack_node *top_node,
-	char stack_name)
+void	rev_rotate_both(t_stack_node **a, t_stack_node **b,
+	t_stack_node *cheapest_node)
 {
-	while (*stack != top_node)
-	{
-		if (stack_name == 'a')
-		{
-			if (top_node->above_median)
-				ra(stack, false);
-			else
-				rra(stack, false);
-		}
-		else if (stack_name == 'b')
-		{
-			if (top_node->above_median)
-				rb(stack, false);
-			else
-				rrb(stack, false);
-		}
-	}
+	while (*b != cheapest_node->target_node && *a != cheapest_node)
+		rrr(a, b, false);
+	current_index(*a);
+	current_index(*b);
 }
 
 void	move_a_to_b(t_stack_node **a, t_stack_node **b)
@@ -110,6 +237,38 @@ void	min_on_top(t_stack_node **a)
 			ra(a, false);
 		else
 			rra(a, false);
+	}
+}
+
+void	sort_stacks(t_stack_node **a, t_stack_node **b)
+{
+	int	len_a;
+
+	len_a = stack_len(*a);
+	if (len_a-- > 3 && !stack_sorted(*a))
+		pb(b, a, false);
+
+}
+
+void	prep_for_push(t_stack_node **stack, t_stack_node *top_node,
+	char stack_name)
+{
+	while (*stack != top_node)
+	{
+		if (stack_name == 'a')
+		{
+			if (top_node->above_median)
+				ra(stack, false);
+			else
+				rra(stack, false);
+		}
+		else if (stack_name == 'b')
+		{
+			if (top_node->above_median)
+				rb(stack, false);
+			else
+				rrb(stack, false);
+		}
 	}
 }
 
@@ -532,4 +691,6 @@ push_swap.c:382:2: warning: implicit declaration of function 'free_stacks' is in
         free_stacks(&stack_a);
         ^
 38 warnings and 6 errors generated.
+
+https://github.com/Thuggonaut/42IC_Ring02_Push_swap/tree/main/push_swap/srcs
 */
