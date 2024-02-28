@@ -28,18 +28,18 @@
 //The last element becomes the first one.
 //rrr : rra and rrb at the same time.
 
-void	init_stack(t_stack_node stack)
-{
-	stack->value = 0;
-	stack->current_position = -1;
-	stack->final_index = -1;
-	stack->push_price = 0;
-	stack->above_median = false;
-	stack->cheapest = false;
-	stack->target_node = NULL;
-	stack->next = NULL;
-	stack->prev = NULL;
-}
+// void	init_stack(t_stack_node stack)
+// {
+// 	stack->value = 0;
+// 	stack->current_position = -1;
+// 	stack->final_index = -1;
+// 	stack->push_price = 0;
+// 	stack->above_median = false;
+// 	stack->cheapest = false;
+// 	stack->target_node = NULL;
+// 	stack->next = NULL;
+// 	stack->prev = NULL;
+// }
 /*movements*/
 
 void	rr(t_stack_node **a, t_stack_node **b, bool print)
@@ -51,7 +51,7 @@ void	rr(t_stack_node **a, t_stack_node **b, bool print)
 }
 
 void	rotate_both(t_stack_node **a, t_stack_node **b,
-	t_stack_node cheapest_node)
+	t_stack_node *cheapest_node)
 {
 	while (*b != cheapest_node->target_node && *a != cheapest_node)
 		rr(a, b, false);
@@ -124,7 +124,7 @@ void	current_index(t_stack_node *stack)
 	median = stack_len(stack) / 2;
 	while (stack)
 	{
-		stack->index = i; //curent_position or final_index
+		stack->current_position = i; //curent_position or final_index?
 		if (i <= median)
 			stack->above_median = true;
 		else
@@ -359,8 +359,8 @@ void	init_stack_a(t_stack_node **a, char **av)
 
 
 int	main(int ac, char **av) {
-	t_stack_node stack_a;
-	t_stack_node stack_b;
+	t_stack_node *stack_a;
+	t_stack_node *stack_b;
 
 	stack_a = NULL;
 	stack_b = NULL;
@@ -383,3 +383,153 @@ int	main(int ac, char **av) {
 	return (0);
 }
 
+
+
+/*
+gcc push_swap.c                                                                                             fde-alen@c2r12p1
+push_swap.c:47:2: warning: implicit declaration of function 'rotate' is invalid in C99 [-Wimplicit-function-declaration]
+        rotate(a);
+        ^
+push_swap.c:58:2: warning: implicit declaration of function 'current_index' is invalid in C99 [-Wimplicit-function-declaration]
+        current_index(*a);
+        ^
+push_swap.c:70:5: warning: implicit declaration of function 'ra' is invalid in C99 [-Wimplicit-function-declaration]
+                                ra(stack, false);
+                                ^
+push_swap.c:72:5: warning: implicit declaration of function 'rra' is invalid in C99 [-Wimplicit-function-declaration]
+                                rra(stack, false);
+                                ^
+push_swap.c:77:5: warning: implicit declaration of function 'rb' is invalid in C99 [-Wimplicit-function-declaration]
+                                rb(stack, false);
+                                ^
+push_swap.c:79:5: warning: implicit declaration of function 'rrb' is invalid in C99 [-Wimplicit-function-declaration]
+                                rrb(stack, false);
+                                ^
+push_swap.c:88:18: warning: implicit declaration of function 'get_cheapest' is invalid in C99 [-Wimplicit-function-declaration]
+        cheapest_node = get_cheapest(*a);
+                        ^
+push_swap.c:88:16: warning: incompatible integer to pointer conversion assigning to 't_stack_node *' (aka 'struct s_stack_node *') from 'int' [-Wint-conversion]
+        cheapest_node = get_cheapest(*a);
+                      ^ ~~~~~~~~~~~~~~~~
+push_swap.c:93:3: warning: implicit declaration of function 'rev_rotate_both' is invalid in C99 [-Wimplicit-function-declaration]
+                rev_rotate_both(a, b, cheapest_node);
+                ^
+push_swap.c:96:2: warning: implicit declaration of function 'pb' is invalid in C99 [-Wimplicit-function-declaration]
+        pb(b, a, false);
+        ^
+push_swap.c:102:2: warning: implicit declaration of function 'pa' is invalid in C99 [-Wimplicit-function-declaration]
+        pa(a, b, false);
+        ^
+push_swap.c:107:24: warning: implicit declaration of function 'find_min' is invalid in C99 [-Wimplicit-function-declaration]
+        while ((*a)->value != find_min(*a)->value)
+                              ^
+push_swap.c:107:38: error: member reference type 'int' is not a pointer
+        while ((*a)->value != find_min(*a)->value)
+                              ~~~~~~~~~~~~  ^
+push_swap.c:109:21: error: member reference type 'int' is not a pointer
+                if (find_min(*a)->above_median)
+                    ~~~~~~~~~~~~  ^
+push_swap.c:110:4: warning: implicit declaration of function 'ra' is invalid in C99 [-Wimplicit-function-declaration]
+                        ra(a, false);
+                        ^
+push_swap.c:112:4: warning: implicit declaration of function 'rra' is invalid in C99 [-Wimplicit-function-declaration]
+                        rra(a, false);
+                        ^
+push_swap.c:116:6: error: conflicting types for 'current_index'
+void    current_index(t_stack_node *stack)
+        ^
+push_swap.c:58:2: note: previous implicit declaration is here
+        current_index(*a);
+        ^
+push_swap.c:124:11: warning: implicit declaration of function 'stack_len' is invalid in C99 [-Wimplicit-function-declaration]
+        median = stack_len(stack) / 2;
+                 ^
+push_swap.c:153:20: warning: implicit declaration of function 'find_max' is invalid in C99 [-Wimplicit-function-declaration]
+                a->target_node = find_max(b);
+                                 ^
+push_swap.c:153:18: warning: incompatible integer to pointer conversion assigning to 'struct s_stack_node *' from 'int' [-Wint-conversion]
+                a->target_node = find_max(b);
+                               ^ ~~~~~~~~~~~
+push_swap.c:180:21: warning: implicit declaration of function 'find_min' is invalid in C99 [-Wimplicit-function-declaration]
+                        b->target_node = find_min(a);
+                                         ^
+push_swap.c:180:19: warning: incompatible integer to pointer conversion assigning to 'struct s_stack_node *' from 'int' [-Wint-conversion]
+                        b->target_node = find_min(a);
+                                       ^ ~~~~~~~~~~~
+push_swap.c:193:10: warning: implicit declaration of function 'stack_len' is invalid in C99 [-Wimplicit-function-declaration]
+        len_a = stack_len(a);
+                ^
+push_swap.c:249:10: warning: implicit declaration of function 'stack_len' is invalid in C99 [-Wimplicit-function-declaration]
+        len_a = stack_len(*a);
+                ^
+push_swap.c:250:22: warning: implicit declaration of function 'stack_sorted' is invalid in C99 [-Wimplicit-function-declaration]
+        if (len_a-- > 3 && !stack_sorted(*a))
+                            ^
+push_swap.c:251:3: warning: implicit declaration of function 'pb' is invalid in C99 [-Wimplicit-function-declaration]
+                pb(b, a, false);
+                ^
+push_swap.c:259:2: warning: implicit declaration of function 'sort_three' is invalid in C99 [-Wimplicit-function-declaration]
+        sort_three(a);
+        ^
+push_swap.c:269:6: error: conflicting types for 'sort_three'
+void    sort_three(t_stack_node **a)
+        ^
+push_swap.c:259:2: note: previous implicit declaration is here
+        sort_three(a);
+        ^
+push_swap.c:273:17: warning: implicit declaration of function 'find_max' is invalid in C99 [-Wimplicit-function-declaration]
+        biggest_node = find_max(*a);
+                       ^
+push_swap.c:273:15: warning: incompatible integer to pointer conversion assigning to 't_stack_node *' (aka 'struct s_stack_node *') from 'int' [-Wint-conversion]
+        biggest_node = find_max(*a);
+                     ^ ~~~~~~~~~~~~
+push_swap.c:275:3: warning: implicit declaration of function 'ra' is invalid in C99 [-Wimplicit-function-declaration]
+                ra(a, false);
+                ^
+push_swap.c:277:3: warning: implicit declaration of function 'rra' is invalid in C99 [-Wimplicit-function-declaration]
+                rra(a, false);
+                ^
+push_swap.c:279:3: warning: implicit declaration of function 'sa' is invalid in C99 [-Wimplicit-function-declaration]
+                sa(a, false);
+                ^
+push_swap.c:282:6: error: conflicting types for 'stack_sorted'
+bool    stack_sorted(t_stack_node *stack)
+        ^
+push_swap.c:250:22: note: previous implicit declaration is here
+        if (len_a-- > 3 && !stack_sorted(*a))
+                            ^
+push_swap.c:295:15: error: conflicting types for 'find_min'
+t_stack_node    *find_min(t_stack_node *stack)
+                 ^
+push_swap.c:107:24: note: previous implicit declaration is here
+        while ((*a)->value != find_min(*a)->value)
+                              ^
+push_swap.c:334:15: warning: implicit declaration of function 'find_last' is invalid in C99 [-Wimplicit-function-declaration]
+                last_node = find_last(*stack);
+                            ^
+push_swap.c:334:13: warning: incompatible integer to pointer conversion assigning to 't_stack_node *' (aka 'struct s_stack_node *') from 'int' [-Wint-conversion]
+                last_node = find_last(*stack);
+                          ^ ~~~~~~~~~~~~~~~~~
+push_swap.c:348:7: warning: implicit declaration of function 'error_sintax' is invalid in C99 [-Wimplicit-function-declaration]
+                if (error_sintax(av[i]))
+                    ^
+push_swap.c:349:4: warning: implicit declaration of function 'free_errors' is invalid in C99 [-Wimplicit-function-declaration]
+                        free_errors(a);
+                        ^
+push_swap.c:353:7: warning: implicit declaration of function 'duplicate_value' is invalid in C99 [-Wimplicit-function-declaration]
+                if (duplicate_value(*a, (int)value)) // int(value)
+                    ^
+push_swap.c:375:7: warning: implicit declaration of function 'stack_len' is invalid in C99 [-Wimplicit-function-declaration]
+                if (stack_len(stack_a))
+                    ^
+push_swap.c:376:4: warning: implicit declaration of function 'sa' is invalid in C99 [-Wimplicit-function-declaration]
+                        sa(&stack_a, false);
+                        ^
+push_swap.c:377:30: warning: comparison between pointer and integer ('t_stack_node **' (aka 'struct s_stack_node **') and 'int') [-Wpointer-integer-compare]
+                else if(stack_len(&stack_a == 3))
+                                  ~~~~~~~~ ^  ~
+push_swap.c:382:2: warning: implicit declaration of function 'free_stacks' is invalid in C99 [-Wimplicit-function-declaration]
+        free_stacks(&stack_a);
+        ^
+38 warnings and 6 errors generated.
+*/
