@@ -208,6 +208,19 @@ void	rev_rotate_both(t_stack_node **a, t_stack_node **b,
 	current_index(*b);
 }
 
+t_stack_node	*get_cheapest(t_stack_node *stack)
+{
+	if (!stack)
+		return (NULL);
+	while (stack)
+	{
+		if (stack->cheapest)
+			return (stack);
+		stack = stack->next;
+	}
+	return (NULL);
+}
+
 void	move_a_to_b(t_stack_node **a, t_stack_node **b)
 {
 	t_stack_node	*cheapest_node;
@@ -385,7 +398,7 @@ void	set_cheapest(t_stack_node *stack)
 
 	if (!stack)
 		return ;
-		cheapest_value = LONG_MAX;
+	cheapest_value = LONG_MAX;
 	while (stack)
 	{
 		if (stack->push_price < cheapest_value)
