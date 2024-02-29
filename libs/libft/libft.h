@@ -6,7 +6,7 @@
 /*   By: fde-alen <fde-alen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/25 13:20:58 by fde-alen          #+#    #+#             */
-/*   Updated: 2023/07/11 18:32:32 by fde-alen         ###   ########.fr       */
+/*   Updated: 2024/02/29 12:17:03 by fde-alen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ typedef struct s_list
 }	t_list;
 
 int					ft_atoi(const char *nptr);
-int					ft_atol(const char *nptr);
+long				ft_atol(const char *nptr);
 void				ft_bzero(void *s, size_t n);
 void				*ft_calloc(size_t nmemb, size_t size);
 int					ft_isalpha(int c);

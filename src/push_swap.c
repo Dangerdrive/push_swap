@@ -68,14 +68,14 @@ void	push(t_stack_node **dest, t_stack_node **src)
 void	pa(t_stack_node **a, t_stack_node **b, bool print)
 {
 	push(a, b);
-	if (!print)
+	if (print)
 		ft_printf("pa\n");
 }
 
 void	pb(t_stack_node **a, t_stack_node **b, bool print)
 {
 	push(b, a);
-	if (!print)
+	if (print)
 		ft_printf("pb\n");
 }
 
@@ -97,14 +97,14 @@ void	reverse_rotate(t_stack_node **stack)
 void	rra(t_stack_node **a, bool print)
 {
 	reverse_rotate(a);
-	if (!print)
+	if (print)
 		ft_printf("rra\n");
 }
 
 void	rrb(t_stack_node **b, bool print)
 {
 	reverse_rotate(b);
-	if (!print)
+	if (print)
 		ft_printf("rrb\n");
 }
 
@@ -112,7 +112,7 @@ void	rrr(t_stack_node **a, t_stack_node **b, bool print)
 {
 	reverse_rotate(a);
 	reverse_rotate(b);
-	if (!print)
+	if (print)
 		ft_printf("rrr\n");
 }
 
@@ -133,14 +133,14 @@ void	rotate(t_stack_node **stack)
 void	ra(t_stack_node **a, bool print)
 {
 	rotate(a);
-	if (!print)
+	if (print)
 		ft_printf("ra\n");
 }
 
 void	rb(t_stack_node **b, bool print)
 {
 	rotate(b);
-	if (!print)
+	if (print)
 		ft_printf("rb\n");
 }
 
@@ -148,7 +148,7 @@ void	rr(t_stack_node **a, t_stack_node **b, bool print)
 {
 	rotate(a);
 	rotate(b);
-	if (!print)
+	if (print)
 		ft_printf("rr\n");
 }
 
@@ -169,14 +169,14 @@ void	swap(t_stack_node **stack)
 void	sa(t_stack_node **a, bool print)
 {
 	swap(a);
-	if (!print)
+	if (print)
 		ft_printf("sa\n");
 }
 
 void	sb(t_stack_node **b, bool print)
 {
 	swap(b);
-	if (!print)
+	if (print)
 		ft_printf("sb\n");
 }
 
@@ -184,7 +184,7 @@ void	ss(t_stack_node **a, t_stack_node **b, bool print)
 {
 	swap(a);
 	swap(b);
-	if (!print)
+	if (print)
 		ft_printf("ss\n");
 }
 
@@ -194,7 +194,7 @@ void	rotate_both(t_stack_node **a, t_stack_node **b,
 	t_stack_node *cheapest_node)
 {
 	while (*b != cheapest_node->target_node && *a != cheapest_node)
-		rr(a, b, false);
+		rr(a, b, true);
 	current_index(*a);
 	current_index(*b);
 }
@@ -203,7 +203,7 @@ void	rev_rotate_both(t_stack_node **a, t_stack_node **b,
 	t_stack_node *cheapest_node)
 {
 	while (*b != cheapest_node->target_node && *a != cheapest_node)
-		rrr(a, b, false);
+		rrr(a, b, true);
 	current_index(*a);
 	current_index(*b);
 }
@@ -233,13 +233,13 @@ void	move_a_to_b(t_stack_node **a, t_stack_node **b)
 		rev_rotate_both(a, b, cheapest_node);
 	prep_for_push(a, cheapest_node, 'a');
 	prep_for_push(b, cheapest_node->target_node, 'b');
-	pb(b, a, false);
+	pb(b, a, true);
 }
 
 void	move_b_to_a(t_stack_node **a, t_stack_node **b)
 {
 	prep_for_push(a, (*b)->target_node, 'a');
-	pa(a, b, false);
+	pa(a, b, true);
 }
 
 void	min_on_top(t_stack_node **a)
@@ -247,9 +247,9 @@ void	min_on_top(t_stack_node **a)
 	while ((*a)->value != find_min(*a)->value)
 	{
 		if (find_min(*a)->above_median)
-			ra(a, false);
+			ra(a, true);
 		else
-			rra(a, false);
+			rra(a, true);
 	}
 }
 
@@ -259,9 +259,9 @@ void	sort_stacks(t_stack_node **a, t_stack_node **b)
 
 	len_a = stack_len(*a);
 	if (len_a-- > 3 && !stack_sorted(*a))
-		pb(b, a, false);
+		pb(b, a, true);
 	if (len_a-- > 3 && !stack_sorted(*a))
-		pb(b, a, false);
+		pb(b, a, true);
 	while (len_a-- > 3 && !stack_sorted(*a))
 	{
 		init_nodes_a(*a, *b);
@@ -285,16 +285,16 @@ void	prep_for_push(t_stack_node **stack, t_stack_node *top_node,
 		if (stack_name == 'a')
 		{
 			if (top_node->above_median)
-				ra(stack, false);
+				ra(stack, true);
 			else
-				rra(stack, false);
+				rra(stack, true);
 		}
 		else if (stack_name == 'b')
 		{
 			if (top_node->above_median)
-				rb(stack, false);
+				rb(stack, true);
 			else
-				rrb(stack, false);
+				rrb(stack, true);
 		}
 	}
 }
@@ -320,26 +320,54 @@ void	current_index(t_stack_node *stack)
 	}
 }
 
-void	set_target_a(t_stack_node *a, t_stack_node *b)
-{
-	t_stack_node	*current_b;
-	t_stack_node	*target_node;
-	long			match_index;
+// void	set_target_a(t_stack_node *a, t_stack_node *b)
+// {
+// 	t_stack_node	*current_b;
+// 	t_stack_node	*target_node;
+// 	long			match_index;
 
-	while (a)
+// 	while (a)
+// 	{
+// 		if (current_b->value < a->value && current_b->value > match_index)
+// 		{
+// 			match_index = current_b->value;
+// 			target_node = current_b;
+// 		}
+// 		current_b = current_b->next;
+// 	}
+// 	if (match_index == LONG_MIN)
+// 		a->target_node = find_max(b);
+// 	else
+// 		a->target_node = target_node;
+// 	a = a->next;
+// }
+
+void	set_target_a(t_stack_node *a, t_stack_node *b)//Find `a` node's target in stack `b`
+{
+	t_stack_node	*current_b; //To store the pointer to the current node in stack `b` and iterate through each node following
+	t_stack_node	*target_node; //To store the pointer to the target node in stack `b`
+	long			best_match_index; //In this case, the best match indexe stores the value of the "closest smaller number" so far
+
+	while (a) //As long as we have nodes in stack `a`
 	{
-		if (current_b->value < a->value && current_b->value > match_index)
+		best_match_index = LONG_MIN; //Assign the smallest `long` as the closest smaller number so far
+		current_b = b; //Assign to `current_b` the current `b` node
+		while (current_b) //Iteratively search through all the nodes in stack `b` until the end of the stack is reached
 		{
-			match_index = current_b->value;
-			target_node = current_b;
+			if (current_b->value < a->value 
+				&& current_b->value > best_match_index) //Check if `b` node is smaller than `a` node && bigger than the closest smaller number so far
+			{
+				best_match_index = current_b->value; //If so, update the value of the closest smaller number so far
+				target_node = current_b; //Assign the current `b` node as the `target_node`
+			}
+			current_b = current_b->next; //Move to the next `b` node for comparison, until a "closer smaller number" is found
 		}
-		current_b = current_b->next;
+		if (best_match_index == LONG_MIN) //Check if the LONG_MIN hasn't changed, it means we haven't found anything smaller
+			a->target_node = find_max(b); //If so, find the biggest `nbr` and set this as the target node
+		else
+			a->target_node = target_node; //If no "closer smaller number" is found, and the best match has changed
+		a = a->next; //Move to the next `a` node to find it's target `b` node
 	}
-	if (match_index == LONG_MIN)
-		a->target_node = find_max(b);
-	else
-		a->target_node = target_node;
-	a = a->next;
 }
 
 void	set_target_b(t_stack_node *a, t_stack_node *b)
@@ -383,12 +411,14 @@ void	cost_analysis_a(t_stack_node *a, t_stack_node *b)
 		a->push_price = a->final_index;
 		if (!(a->above_median))
 			a->push_price = len_a - (a->final_index);
-		if (a->target_node->above_median)
-			a->push_price += a->target_node->final_index;
-		else
-			a->push_price += len_b - (a->target_node->final_index);
-		a = a->next;
-	}
+		if (a->target_node != NULL)
+		{
+			if (a->target_node->above_median)
+				a->push_price += a->target_node->final_index;
+			else
+				a->push_price += len_b - (a->target_node->final_index);
+			a = a->next;}
+		}
 }
 
 void	set_cheapest(t_stack_node *stack)
@@ -434,11 +464,11 @@ void	sort_three(t_stack_node **a)
 
 	biggest_node = find_max(*a);
 	if (biggest_node == *a)
-		ra(a, false);
+		ra(a, true);
 	else if ((*a)->next == biggest_node)
-		rra(a, false);
+		rra(a, true);
 	if ((*a)->value > (*a)->next->value)
-		sa(a, false);
+		sa(a, true);
 }
 
 void	append_node(t_stack_node **stack, int value)
@@ -476,7 +506,7 @@ void	init_stack_a(t_stack_node **a, char **av)
 	{
 		if (error_syntax(av[i]))
 			free_errors(a);
-		value = atol(av[i]);
+		value = ft_atol(av[i]);
 		if (value > INT_MAX || value < INT_MIN)
 			free_errors(a);
 		if (error_duplicate(*a, (int)value)) // int(value)
@@ -546,17 +576,17 @@ void	free_errors(t_stack_node **a)
 /*stack_utils*/
 int	stack_len(t_stack_node *stack)
 {
-	int	count;
+	int	len;
 
-	count = 0;
+	len = 0;
 	if (!stack) 
 		return (0);
 	while (stack)
 	{
 		stack = stack->next;
-		count++;
+		len++;
 	}
-	return (count);
+	return (len);
 }
 
 t_stack_node	*find_last(t_stack_node *stack)
@@ -635,8 +665,8 @@ int	main(int ac, char **av) {
 	init_stack_a(&stack_a, av + 1);
 	if (!stack_sorted(stack_a))
 	{
-		if (stack_len(stack_a))
-			sa(&stack_a, false);
+		if (stack_len(stack_a) == 2)
+			sa(&stack_a, true);
 		else if(stack_len(stack_a) == 3)
 			sort_three(&stack_a);
 		else
