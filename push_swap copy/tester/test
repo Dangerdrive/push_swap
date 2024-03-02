@@ -36,6 +36,44 @@ make
 
 
 # Function to check for memory leaks and saves if found
+# check_leaks() {
+#     local input=$1
+#     local description=$2
+#     local valgrind_output="valgrind_output.txt"
+
+#     printf "Leak check:${CYAN}\n"
+#     $VALGRIND $PUSH_SWAP $input > /dev/null 2> $valgrind_output
+
+#     # Check for the statement explicitly stating no leaks are possible
+#     if grep -q "All heap blocks were freed -- no leaks are possible" $valgrind_output || grep -q "ERROR SUMMARY: 0 errors" $valgrind_output; then
+#         printf "${GREEN}${BOLD}VALGRIND: NO LEAKS${NC}\n"
+#     else
+#         printf "${RED}${BOLD}VALGRIND: LEAK FOUND${NC}\n"
+#         mkdir -p tester/leaks
+#         cp $valgrind_output tester/leaks/"$(echo $description | sed 's/ /_/g')_valgrind_output.txt"
+#         printf "Valgrind output saved to ${BOLD}tester/leaks/$(echo $description | sed 's/ /_/g')_valgrind_output.txt${NC}\n"
+#     fi
+# }
+# check_leaks() {
+#     local input=$1
+#     local description=$2
+#     local valgrind_output="valgrind_output.txt"
+
+#     printf "Leak check:${CYAN}\n"
+#     $VALGRIND $PUSH_SWAP $input > /dev/null 2> $valgrind_output
+
+#     # Check for the definitive phrase indicating no leaks
+#     if grep -q "no leaks are possible" $valgrind_output && grep -q "ERROR SUMMARY: 0 errors" $valgrind_output; then
+#         printf "${GREEN}${BOLD}VALGRIND: NO LEAKS${NC}\n"
+#     elif grep -q "lost" $valgrind_output; then
+#         printf "${RED}${BOLD}VALGRIND: LEAK FOUND${NC}\n"
+#         mkdir -p tester/leaks
+#         cp $valgrind_output tester/leaks/"$(echo $description | sed 's/ /_/g')_valgrind_output.txt"
+#         printf "Valgrind output saved to ${BOLD}tester/leaks/$(echo $description | sed 's/ /_/g')_valgrind_output.txt${NC}\n"
+#     else
+#         printf "${RED}${BOLD}VALGRIND: ERRORS FOUND${NC}\n"
+#     fi
+# }
 check_leaks() {
     local input=$1
     local description=$2
@@ -44,17 +82,21 @@ check_leaks() {
     printf "Leak check:${CYAN}\n"
     $VALGRIND $PUSH_SWAP $input > /dev/null 2> $valgrind_output
 
-    # Check for the statement explicitly stating no leaks are possible
-    if grep -q "All heap blocks were freed -- no leaks are possible" $valgrind_output || grep -q "ERROR SUMMARY: 0 errors" $valgrind_output; then
+    # Check for the definitive phrase indicating no leaks and no errors
+    if grep -q "no leaks are possible" $valgrind_output && grep -q "ERROR SUMMARY: 0 errors" $valgrind_output; then
         printf "${GREEN}${BOLD}VALGRIND: NO LEAKS${NC}\n"
     else
-        printf "${RED}${BOLD}VALGRIND: LEAK FOUND${NC}\n"
-        mkdir -p tester/leaks
-        cp $valgrind_output tester/leaks/"$(echo $description | sed 's/ /_/g')_valgrind_output.txt"
-        printf "Valgrind output saved to ${BOLD}tester/leaks/$(echo $description | sed 's/ /_/g')_valgrind_output.txt${NC}\n"
+        # Check if the term 'definitely lost' or 'indirectly lost' is found with non-zero byte counts
+        if grep -E "definitely lost: [1-9]|indirectly lost: [1-9]" $valgrind_output; then
+            printf "${RED}${BOLD}VALGRIND: LEAK FOUND${NC}\n"
+            mkdir -p tester/leaks
+            cp $valgrind_output tester/leaks/"$(echo $description | sed 's/ /_/g')_valgrind_output.txt"
+            printf "Valgrind output saved to ${BOLD}tester/leaks/$(echo $description | sed 's/ /_/g')_valgrind_output.txt${NC}\n"
+        else
+            printf "${YELLOW}${BOLD}VALGRIND: No definite leaks but review manually recommended${NC}\n"
+        fi
     fi
 }
-
 
 
 

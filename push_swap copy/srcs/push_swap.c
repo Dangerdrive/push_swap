@@ -1,6 +1,18 @@
 /*push.c*/
 #include "../inc/push_swap.h"
 
+void	init_node(t_stack_node *stack)
+{
+	stack->nbr = 0;
+	stack->index = -1;
+	stack->push_cost = 0;
+	stack->above_median = false;
+	stack->cheapest = false;
+	stack->target_node = NULL;
+	stack->next = NULL;
+	stack->prev = NULL;
+}
+
 static void	push(t_stack_node **dest, t_stack_node **src)
 {
 	t_stack_node	*push_node;
@@ -582,17 +594,20 @@ static void	append_node(t_stack_node **stack, int n)
 	t_stack_node	*node;
 	t_stack_node	*last_node;
 
+	node = NULL;
+	last_node = NULL;
 	if (!stack)
 		return ;
 	node = malloc(sizeof(t_stack_node));
 	if (!node)
 		return ;
-	node->next = NULL;
+	init_node(node);
+	//node->next = NULL;
 	node->nbr = n;
 	if (!(*stack))
 	{
 		*stack = node;
-		node->prev = NULL;
+		//node->prev = NULL;
 	}
 	else
 	{
