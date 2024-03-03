@@ -35,51 +35,13 @@ make
 #norminette
 
 
-# Function to check for memory leaks and saves if found
-# check_leaks() {
-#     local input=$1
-#     local description=$2
-#     local valgrind_output="valgrind_output.txt"
 
-#     printf "Leak check:${CYAN}\n"
-#     $VALGRIND $PUSH_SWAP $input > /dev/null 2> $valgrind_output
-
-#     # Check for the statement explicitly stating no leaks are possible
-#     if grep -q "All heap blocks were freed -- no leaks are possible" $valgrind_output || grep -q "ERROR SUMMARY: 0 errors" $valgrind_output; then
-#         printf "${GREEN}${BOLD}VALGRIND: NO LEAKS${NC}\n"
-#     else
-#         printf "${RED}${BOLD}VALGRIND: LEAK FOUND${NC}\n"
-#         mkdir -p tester/leaks
-#         cp $valgrind_output tester/leaks/"$(echo $description | sed 's/ /_/g')_valgrind_output.txt"
-#         printf "Valgrind output saved to ${BOLD}tester/leaks/$(echo $description | sed 's/ /_/g')_valgrind_output.txt${NC}\n"
-#     fi
-# }
-# check_leaks() {
-#     local input=$1
-#     local description=$2
-#     local valgrind_output="valgrind_output.txt"
-
-#     printf "Leak check:${CYAN}\n"
-#     $VALGRIND $PUSH_SWAP $input > /dev/null 2> $valgrind_output
-
-#     # Check for the definitive phrase indicating no leaks
-#     if grep -q "no leaks are possible" $valgrind_output && grep -q "ERROR SUMMARY: 0 errors" $valgrind_output; then
-#         printf "${GREEN}${BOLD}VALGRIND: NO LEAKS${NC}\n"
-#     elif grep -q "lost" $valgrind_output; then
-#         printf "${RED}${BOLD}VALGRIND: LEAK FOUND${NC}\n"
-#         mkdir -p tester/leaks
-#         cp $valgrind_output tester/leaks/"$(echo $description | sed 's/ /_/g')_valgrind_output.txt"
-#         printf "Valgrind output saved to ${BOLD}tester/leaks/$(echo $description | sed 's/ /_/g')_valgrind_output.txt${NC}\n"
-#     else
-#         printf "${RED}${BOLD}VALGRIND: ERRORS FOUND${NC}\n"
-#     fi
-# }
 check_leaks() {
     local input=$1
     local description=$2
     local valgrind_output="valgrind_output.txt"
 
-    printf "Leak check:${CYAN}\n"
+#    printf "Leak check:${CYAN}\n"
     $VALGRIND $PUSH_SWAP $input > /dev/null 2> $valgrind_output
 
     # Check for the definitive phrase indicating no leaks and no errors
@@ -97,9 +59,23 @@ check_leaks() {
         fi
     fi
 }
+# check_leaks() {
+#     local input=$1
+#     local description=$2
 
+#     # Run Valgrind and count the required conditions directly from its output
+#     local R=$(valgrind --log-fd=1 --leak-check=full --show-leak-kinds=all --track-origins=yes --verbose $PUSH_SWAP $input 2>&1 | grep -Ec "no leaks are possible|ERROR SUMMARY: 0 errors")
 
-
+#     if [[ $R == 2 ]]; then
+#         printf "${GREEN}${BOLD}VALGRIND: NO LEAKS${NC}\n"
+#     else
+#         printf "${RED}${BOLD}VALGRIND: LEAK FOUND${NC}\n"
+#         mkdir -p tester/leaks
+#         # Since we're directly checking from stdout, save the entire output if needed for analysis
+#         valgrind --leak-check=full --show-leak-kinds=all --track-origins=yes --verbose $PUSH_SWAP $input > tester/leaks/"$(echo $description | sed 's/ /_/g')_valgrind_output.txt" 2>&1
+#         printf "Valgrind output saved to ${BOLD}tester/leaks/$(echo $description | sed 's/ /_/g')_valgrind_output.txt${NC}\n"
+#     fi
+# }
 
 
 
@@ -108,182 +84,312 @@ printf                   "|        PARAMETER ERRORS        |"
 printf                  "\n==================================\n${NC}"
 
 
+# test_wrong_params() {
+#     local description=$1
+#     local input=$2
+#     local expected_output=$3
+
+#     printf "${YELLOW}${BOLD}\n=========== $description ($input) ============\n${NC}"
+
+#     # Run push_swap with input and capture output
+#     ${PUSH_SWAP} ${input} > ${OUTPUT_PUSH_SWAP}
+
+#     printf "${NC}'$expected_output' in output: "
+
+#     # Check output for expected string
+#     if grep -q "$expected_output" "${OUTPUT_PUSH_SWAP}"; then
+#         printf "${GREEN}${BOLD}OK!${NC}\n"
+#     else
+#         printf "${RED}${BOLD}KO: \nExpected '$expected_output' but got something else${NC}:\n"
+#         cat ${OUTPUT_PUSH_SWAP}
+#     fi
+
+#     # Check for leaks if enabled
+#     if [ "$LEAK_TOGGLE" -eq 1 ]; then
+#         check_leaks "$input" "$description"
+#     fi
+
+#     # Remove the output file after the check
+#     rm -f ${OUTPUT_PUSH_SWAP}
+# }
+
+test_wrong_params() {
+    local description="$1"
+    local input="$2"
+    local expected_output="$3"
+
+    printf "${YELLOW}${BOLD}\n=========== $description ============\n${NC}"
+
+    # Handle empty input explicitly to ensure push_swap is called correctly even with empty input
+    if [ -z "$input" ]; then
+        ${PUSH_SWAP} > ${OUTPUT_PUSH_SWAP}
+    else
+        ${PUSH_SWAP} $input > ${OUTPUT_PUSH_SWAP}
+    fi
+
+    # Check if the output file is empty and the expected output is also an empty string
+    if [ -z "$expected_output" ] && [ ! -s ${OUTPUT_PUSH_SWAP} ]; then
+        printf "${GREEN}${BOLD}OK! ${NC} Output displayed'$expected_output'\n"
+    # Check output for expected string
+    elif grep -q "$expected_output" "${OUTPUT_PUSH_SWAP}"; then
+        printf "${GREEN}${BOLD}OK! ${NC} Output displayed'$expected_output'\n"
+    else
+        printf "${RED}${BOLD}KO: Expected '$expected_output' but got something else or nothing.${NC}\n"
+        cat ${OUTPUT_PUSH_SWAP}
+    fi
+
+    # Check for leaks if enabled
+    if [ "$LEAK_TOGGLE" -eq 1 ]; then
+        check_leaks "$input" "$description"
+    fi
+
+    # Remove the output file after the check
+    rm -f ${OUTPUT_PUSH_SWAP}
+}
+
+test_wrong_params "Non-numeric parameters" "a b c" "Error"
+test_wrong_params "Duplicates" "53 6 9 987 972337 9" "Error"
+test_wrong_params "Integer overflow" "53 6 9 987 972337 2147483650" "Error"
+test_wrong_params "No parameters" "" ""
+
+
+# # Test specific variables
+# INPUT="a b c"
+# EXPECTED_OUTPUT="Error"
+# DESCRIPTION="TEST 1: Non-numeric parameters"
+
+# # Clear previous output file
+# rm -f $OUTPUT_PUSH_SWAP
+
+# # Run test
+# printf "${YELLOW}${BOLD}\n=========== $DESCRIPTION ($INPUT)============\n${NC}"
+# # printf "Testing with non-numeric parameters.\n"
+# # printf "Input: ${INPUT}\n"
+# ${PUSH_SWAP} ${INPUT} > ${OUTPUT_PUSH_SWAP}
+
+# printf "${NC}Checking for 'Error' in output: "
+
+# # Check output
+# if grep -q "$EXPECTED_OUTPUT" "$OUTPUT_PUSH_SWAP"; then
+#     printf "${GREEN}${BOLD}OK!${NC}\n"
+# else
+#     printf "${RED}${BOLD}KO: Expected 'Error' but got something else${NC}:\n"
+#     cat $OUTPUT_PUSH_SWAP
+# fi
+
+# # check for leaks
+# if [ $LEAK_TOGGLE -eq 1 ]; then
+#     check_leaks "$INPUT" "$DESCRIPTION"
+# fi
+
+# # remove the output file after the check
+# rm -f $OUTPUT_PUSH_SWAP
+
+
+# # Test specific variables TEST 2
+# INPUT="53 6 9 987 972337 9"
+# EXPECTED_OUTPUT="Error"
+# DESCRIPTION="TEST 2: duplicates"
+
+# printf "${YELLOW}${BOLD}\n=========== $DESCRIPTION ($INPUT)============\n${NC}"
+# # Test specific variables
+
+
+# # Clear previous output file
+# rm -f $OUTPUT_PUSH_SWAP
+
+# # Run test
+
+# printf "Testing with duplicate numeric parameters..\n"
+# printf "Input: ${INPUT}\n"
+# ${PUSH_SWAP} ${INPUT} > ${OUTPUT_PUSH_SWAP}
+
+# printf "${NC}Checking for 'Error' in output: "
+
+# # Check output
+# if grep -q "$EXPECTED_OUTPUT" "$OUTPUT_PUSH_SWAP"; then
+#     printf "${GREEN}${BOLD}OK!${NC}\n"
+# else
+#     printf "${RED}${BOLD}KO: Expected 'Error' but got something else${NC}:\n"
+#     cat $OUTPUT_PUSH_SWAP
+# fi
+
+# # Check for leaks
+# if [ $LEAK_TOGGLE -eq 1 ]; then
+#     check_leaks "$INPUT" "$DESCRIPTION"
+# fi
+
+# # remove the output file after the check
+# rm -f $OUTPUT_PUSH_SWAP
 
 
 
-# Test specific variables
-INPUT="a b c"
-EXPECTED_OUTPUT="Error"
-DESCRIPTION="TEST 1: Non-numeric parameters"
+# # Test specific variables TEST 3
+# INPUT="53 6 9 987 972337 2147483650"
+# EXPECTED_OUTPUT="Error"
+# DESCRIPTION="TEST 3: integer overflow"
+# printf "${YELLOW}${BOLD}\n=========== $DESCRIPTION ($INPUT)============\n${NC}"
 
-# Clear previous output file
-rm -f $OUTPUT_PUSH_SWAP
+# # Clear previous output file
+# rm -f $OUTPUT_PUSH_SWAP
 
-# Run test
-printf "${YELLOW}${BOLD}\n=========== $DESCRIPTION ============\n${NC}"
-printf "Testing with non-numeric parameters.\n"
-printf "Input: ${INPUT}\n\n"
-${PUSH_SWAP} ${INPUT} > ${OUTPUT_PUSH_SWAP}
-printf "\n"
-printf "${NC}Checking for 'Error' in output: "
+# # Run test
 
-# Check output
-if grep -q "$EXPECTED_OUTPUT" "$OUTPUT_PUSH_SWAP"; then
-    printf "${GREEN}${BOLD}OK!${NC}\n"
-else
-    printf "${RED}${BOLD}KO: Expected 'Error' but got something else${NC}:\n"
-    cat $OUTPUT_PUSH_SWAP
-fi
+# printf "Testing numeric parameters including integer overflow.\n"
+# printf "Input: ${INPUT}\n"
+# ${PUSH_SWAP} ${INPUT} > ${OUTPUT_PUSH_SWAP}
 
-# check for leaks
-if [ $LEAK_TOGGLE -eq 1 ]; then
-    check_leaks "$INPUT" "$DESCRIPTION"
-fi
+# printf "${NC}Checking for 'Error' in output: "
 
-# remove the output file after the check
-rm -f $OUTPUT_PUSH_SWAP
+# # Check output
+# if grep -q "$EXPECTED_OUTPUT" "$OUTPUT_PUSH_SWAP"; then
+#     printf "${GREEN}${BOLD}OK!${NC}\n"
+# else
+#     printf "${RED}${BOLD}KO: Expected 'Error' but got something else${NC}:\n"
+#     cat $OUTPUT_PUSH_SWAP
+# fi
 
+# # check for leaks
+# if [ $LEAK_TOGGLE -eq 1 ]; then
+#     check_leaks "$INPUT" "$DESCRIPTION"
+# fi
 
-# Test specific variables TEST 2
-INPUT="53 6 9 987 972337 9"
-EXPECTED_OUTPUT="Error"
-DESCRIPTION="TEST 2: duplicates"
-
-printf "${YELLOW}${BOLD}\n=========== $DESCRIPTION ============\n${NC}"
-# Test specific variables
+# # remove the output file after the check
+# rm -f $OUTPUT_PUSH_SWAP
 
 
-# Clear previous output file
-rm -f $OUTPUT_PUSH_SWAP
+# # Test specific variables TEST 4
+# INPUT=""
+# EXPECTED_OUTPUT="Error"
+# DESCRIPTION="TEST 4: no parameters"
+# printf "${YELLOW}${BOLD}\n=========== $DESCRIPTION ($INPUT)============\n${NC}"
 
-# Run test
+# # Clear previous output file
+# rm -f $OUTPUT_PUSH_SWAP
 
-printf "Testing with duplicate numeric parameters..\n"
-printf "Input: ${INPUT}\n\n"
-${PUSH_SWAP} ${INPUT} > ${OUTPUT_PUSH_SWAP}
-printf "\n"
-printf "${NC}Checking for 'Error' in output: "
+# # Run test
+# printf "Testing using no parameters.\n"
+# ${PUSH_SWAP} > ${OUTPUT_PUSH_SWAP}
 
-# Check output
-if grep -q "$EXPECTED_OUTPUT" "$OUTPUT_PUSH_SWAP"; then
-    printf "${GREEN}${BOLD}OK!${NC}\n"
-else
-    printf "${RED}${BOLD}KO: Expected 'Error' but got something else${NC}:\n"
-    cat $OUTPUT_PUSH_SWAP
-fi
+# printf "${NC}Checking for empty output: "
 
-# Check for leaks
-if [ $LEAK_TOGGLE -eq 1 ]; then
-    check_leaks "$INPUT" "$DESCRIPTION"
-fi
+# # Check if the output file is empty
+# if [ ! -s ${OUTPUT_PUSH_SWAP} ]; then
+#     printf "${GREEN}${BOLD}OK!${NC}\n"
+# else
+#     printf "${RED}${BOLD}KO: Expected nothing but got something else${NC}:\n"
+#     cat $OUTPUT_PUSH_SWAP
+# fi
 
-# remove the output file after the check
-rm -f $OUTPUT_PUSH_SWAP
-
-
-
-# Test specific variables TEST 3
-INPUT="53 6 9 987 972337 2147483650"
-EXPECTED_OUTPUT="Error"
-DESCRIPTION="TEST 3: integer overflow"
-printf "${YELLOW}${BOLD}\n=========== $DESCRIPTION ============\n${NC}"
-
-# Clear previous output file
-rm -f $OUTPUT_PUSH_SWAP
-
-# Run test
-
-printf "Testing numeric parameters including integer overflow.\n"
-printf "Input: ${INPUT}\n\n"
-${PUSH_SWAP} ${INPUT} > ${OUTPUT_PUSH_SWAP}
-printf "\n"
-printf "${NC}Checking for 'Error' in output: "
-
-# Check output
-if grep -q "$EXPECTED_OUTPUT" "$OUTPUT_PUSH_SWAP"; then
-    printf "${GREEN}${BOLD}OK!${NC}\n"
-else
-    printf "${RED}${BOLD}KO: Expected 'Error' but got something else${NC}:\n"
-    cat $OUTPUT_PUSH_SWAP
-fi
-
-# check for leaks
-if [ $LEAK_TOGGLE -eq 1 ]; then
-    check_leaks "$INPUT" "$DESCRIPTION"
-fi
-
-# remove the output file after the check
-rm -f $OUTPUT_PUSH_SWAP
+# # Check for leaks if enabled
+# if [ $LEAK_TOGGLE -eq 1 ]; then
+#     check_leaks "$DESCRIPTION"
+# fi
 
 
-# Test specific variables TEST 4
-INPUT=""
-EXPECTED_OUTPUT="Error"
-DESCRIPTION="TEST 4: no parameters"
-printf "${YELLOW}${BOLD}\n=========== $DESCRIPTION ============\n${NC}"
+# # remove the output file after the check
+# rm -f $OUTPUT_PUSH_SWAP
 
-# Clear previous output file
-rm -f $OUTPUT_PUSH_SWAP
+# # Test specific variables TEST 5
+# INPUT=""
+# EXPECTED_OUTPUT="Error"
+# DESCRIPTION="TEST 5: empty string as paramenter"
+# printf "${YELLOW}${BOLD}\n=========== $DESCRIPTION ($INPUT)============\n${NC}"
 
-# Run test
-printf "Testing using no parameters.\n"
-${PUSH_SWAP} > ${OUTPUT_PUSH_SWAP}
-printf "\n"
-printf "${NC}Checking for empty output: "
+# # Test specific variables
+# INPUT=""
 
-# Check if the output file is empty
-if [ ! -s ${OUTPUT_PUSH_SWAP} ]; then
-    printf "${GREEN}${BOLD}OK!${NC}\n"
-else
-    printf "${RED}${BOLD}KO: Expected nothing but got something else${NC}:\n"
-    cat $OUTPUT_PUSH_SWAP
-fi
+# # Clear previous output file
+# rm -f $OUTPUT_PUSH_SWAP
 
-# Check for leaks if enabled
-if [ $LEAK_TOGGLE -eq 1 ]; then
-    check_leaks "$DESCRIPTION"
-fi
+# # Run test
+# printf "Testing empty string as parameters..\n"
+# ${PUSH_SWAP} ${INPUT} > ${OUTPUT_PUSH_SWAP}
 
+# printf "${NC}Checking for '' in output: "
 
-# remove the output file after the check
-rm -f $OUTPUT_PUSH_SWAP
+# # Check if the output file is empty
+# if [ ! -s ${OUTPUT_PUSH_SWAP} ]; then
+#     printf "${GREEN}${BOLD}OK!${NC}\n"
+# else
+#     printf "${RED}${BOLD}KO: Expected '' but got something else${NC}:\n"
+#     cat $OUTPUT_PUSH_SWAP
+# fi
 
-# Test specific variables TEST 5
-INPUT=""
-EXPECTED_OUTPUT="Error"
-DESCRIPTION="TEST 5: empty string as paramenter"
-printf "${YELLOW}${BOLD}\n=========== $DESCRIPTION ============\n${NC}"
+# # Check for leaks if enabled
+# if [ $LEAK_TOGGLE -eq 1 ]; then
+#     check_leaks "$DESCRIPTION"
+# fi
 
-# Test specific variables
-INPUT=""
-
-# Clear previous output file
-rm -f $OUTPUT_PUSH_SWAP
-
-# Run test
-printf "Testing empty string as parameters..\n"
-${PUSH_SWAP} ${INPUT} > ${OUTPUT_PUSH_SWAP}
-printf "\n"
-printf "${NC}Checking for '' in output: "
-
-# Check if the output file is empty
-if [ ! -s ${OUTPUT_PUSH_SWAP} ]; then
-    printf "${GREEN}${BOLD}OK!${NC}\n"
-else
-    printf "${RED}${BOLD}KO: Expected '' but got something else${NC}:\n"
-    cat $OUTPUT_PUSH_SWAP
-fi
-
-# Check for leaks if enabled
-if [ $LEAK_TOGGLE -eq 1 ]; then
-    check_leaks "$DESCRIPTION"
-fi
-
-# remove the output file after the check
-rm -f $OUTPUT_PUSH_SWAP
+# # remove the output file after the check
+# rm -f $OUTPUT_PUSH_SWAP
 
 
 
+
+
+
+
+printf "${PURPLE}${BOLD}\n==================================\n"
+printf                   "|       SORTED PARAMETERS        |"
+printf                  "\n==================================\n${NC}"
+
+
+# run_test() {
+#     local description=$1
+#     local input=$2
+#     local min_commands=$3
+#     local max_commands=$4
+
+
+#     printf "${YELLOW}${BOLD}\n============ TEST: $description ==============\n${NC}"
+#     #printf "Testing with input: ${BOLD}$input${NC}\n"
+
+#     # Run push_swap with input and capture output
+#     echo $input | xargs ${PUSH_SWAP} > ${OUTPUT_PUSH_SWAP}
+
+#     # Additionally, use the output of push_swap as input for checker
+#     echo $input | xargs ${PUSH_SWAP} | ${CHECKER} $input > ${OUTPUT_CHECKER}
+#     # Check checker's output for "OK"
+#     if grep -q "OK" ${OUTPUT_CHECKER}; then
+#         printf "${GREEN}${BOLD}OK!${NC} Checker reported OK status.\n"
+#     else
+#         printf "${RED}${BOLD}KO${NC}: Checker did not report OK status:\n"
+#         cat $OUTPUT_CHECKER
+#     fi
+
+#     # Count the number of commands output by push_swap
+#     local num_commands=$(wc -l < ${OUTPUT_PUSH_SWAP})
+
+#     # Check if the number of commands falls within the expected range
+#     if [ "$num_commands" -ge "$min_commands" ] && [ "$num_commands" -le "$max_commands" ]; then
+#         printf "${GREEN}${BOLD}OK!${NC} The number of commands ($num_commands) is within the expected range ($min_commands to $max_commands).\n"
+#     else
+#         printf "${RED}${BOLD}KO${NC}: The number of commands ($num_commands) is outside the expected range ($min_commands to $max_commands).\n"
+#     fi
+
+#     # Check for leaks if enabled
+#     if [ $LEAK_TOGGLE -eq 1 ]; then
+#         #printf "Leak check:${CYAN}\n"
+#         $VALGRIND $PUSH_SWAP $input > /dev/null 2> valgrind_output.txt
+        
+#         # Check for the presence of "definitely lost" and "in use at exit" in the Valgrind report
+#         if grep -q "definitely lost: 0 bytes in 0 blocks" valgrind_output.txt && grep -q "in use at exit: 0 bytes in 0 blocks" valgrind_output.txt; then
+#             printf "${GREEN}${BOLD}VALGRIND: NO LEAKS${NC}\n"
+#         else
+#             printf "${RED}${BOLD}VALGRIND: LEAK FOUND${NC}\n"
+#             # Create leaks/ directory if it doesn't exist
+#             mkdir -p leaks
+#             # Copy valgrind_output.txt to leaks/ folder with a descriptive name
+#             cp valgrind_output.txt tester/leaks/"$(echo $description | sed 's/ /_/g')_valgrind_output.txt"
+#             printf "Valgrind output saved to ${BOLD}leaks/$(echo $description | sed 's/ /_/g')_valgrind_output.txt${NC}\n"
+#         fi
+#     fi
+
+
+#     # Optionally, remove the output files after the checks
+#     rm -f $OUTPUT_PUSH_SWAP $OUTPUT_CHECKER
+# }
 
 run_test() {
     local description=$1
@@ -291,10 +397,7 @@ run_test() {
     local min_commands=$3
     local max_commands=$4
 
-
     printf "${YELLOW}${BOLD}\n============ TEST: $description ==============\n${NC}"
-    #printf "Testing with input: ${BOLD}$input${NC}\n"
-
     # Run push_swap with input and capture output
     echo $input | xargs ${PUSH_SWAP} > ${OUTPUT_PUSH_SWAP}
 
@@ -305,7 +408,7 @@ run_test() {
         printf "${GREEN}${BOLD}OK!${NC} Checker reported OK status.\n"
     else
         printf "${RED}${BOLD}KO${NC}: Checker did not report OK status:\n"
-        cat $OUTPUT_CHECKER
+        cat ${OUTPUT_CHECKER}
     fi
 
     # Count the number of commands output by push_swap
@@ -319,31 +422,13 @@ run_test() {
     fi
 
     # Check for leaks if enabled
-    if [ $LEAK_TOGGLE -eq 1 ]; then
-        #printf "Leak check:${CYAN}\n"
-        $VALGRIND $PUSH_SWAP $input > /dev/null 2> valgrind_output.txt
-        
-        # Check for the presence of "definitely lost" and "in use at exit" in the Valgrind report
-        if grep -q "definitely lost: 0 bytes in 0 blocks" valgrind_output.txt && grep -q "in use at exit: 0 bytes in 0 blocks" valgrind_output.txt; then
-            printf "${GREEN}${BOLD}VALGRIND: NO LEAKS${NC}\n"
-        else
-            printf "${RED}${BOLD}VALGRIND: LEAK FOUND${NC}\n"
-            # Create leaks/ directory if it doesn't exist
-            mkdir -p leaks
-            # Copy valgrind_output.txt to leaks/ folder with a descriptive name
-            cp valgrind_output.txt tester/leaks/"$(echo $description | sed 's/ /_/g')_valgrind_output.txt"
-            printf "Valgrind output saved to ${BOLD}leaks/$(echo $description | sed 's/ /_/g')_valgrind_output.txt${NC}\n"
-        fi
+    if [ "$LEAK_TOGGLE" -eq 1 ]; then
+        check_leaks "$input" "$description"
     fi
 
     # Optionally, remove the output files after the checks
-    rm -f $OUTPUT_PUSH_SWAP $OUTPUT_CHECKER
+    rm -f ${OUTPUT_PUSH_SWAP} ${OUTPUT_CHECKER}
 }
-
-
-printf "${PURPLE}${BOLD}\n==================================\n"
-printf                   "|       SORTED PARAMETERS        |"
-printf                  "\n==================================\n${NC}"
 
 
 run_test "Single value (42)" "42" "0" "0" 
