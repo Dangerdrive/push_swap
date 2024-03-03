@@ -568,26 +568,26 @@ management, and error handling.
 */
 
 /*stack_init.c*/
-static long	ft_atol(const char *s)
-{
-	long	result;
-	int		sign;
+// static long	ft_atol(const char *s)
+// {
+// 	long	result;
+// 	int		sign;
 
-	result = 0;
-	sign = 1;
-	while (*s == ' ' || *s == '\t' || *s == '\n' || \
-			*s == '\r' || *s == '\f' || *s == '\v')
-		s++;
-	if (*s == '-' || *s == '+')
-	{
-		if (*s == '-')
-			sign = -1;
-		s++;
-	}
-	while (ft_isdigit(*s))
-		result = result * 10 + (*s++ - '0');
-	return (result * sign);
-}
+// 	result = 0;
+// 	sign = 1;
+// 	while (*s == ' ' || *s == '\t' || *s == '\n' || \
+// 			*s == '\r' || *s == '\f' || *s == '\v')
+// 		s++;
+// 	if (*s == '-' || *s == '+')
+// 	{
+// 		if (*s == '-')
+// 			sign = -1;
+// 		s++;
+// 	}
+// 	while (ft_isdigit(*s))
+// 		result = result * 10 + (*s++ - '0');
+// 	return (result * sign);
+// }
 
 static void	append_node(t_stack_node **stack, int n)
 {
@@ -774,5 +774,12 @@ int	main(int argc, char **argv)
 			sort_stacks(&a, &b);
 	}
 	free_stack(&a);
+	// char **tmp = argv;
+	// while (*tmp)
+	// {
+	// 	free(*tmp);
+	// 	tmp++;
+	// }
+	// free(tmp);
 	return (0);
 }

@@ -3,8 +3,8 @@
 
 # include <stdbool.h> //To use bool flags, e.g, to print or not to print
 # include <limits.h> //To define MIN and MAX macros
-# include "../libft/inc/libft.h"
-# include "../libft/inc/ft_printf.h"
+# include "../libs/libft/libft.h"
+# include "../libs/ft_printf/ft_printf.h"
 
 typedef struct s_stack_node //A container of data enclosed in {} braces. `s_` for struct
 {

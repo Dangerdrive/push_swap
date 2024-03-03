@@ -6,13 +6,13 @@
 /*   By: fde-alen <fde-alen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/08 17:57:21 by fde-alen          #+#    #+#             */
-/*   Updated: 2024/01/11 17:13:01 by fde-alen         ###   ########.fr       */
+/*   Updated: 2024/03/03 16:17:53 by fde-alen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-static size_t	count_words(const char *s, char c)
+static size_t	count_words(char *s, char c)
 {
 	size_t	i;
 	size_t	word_count;
@@ -33,7 +33,7 @@ static size_t	count_words(const char *s, char c)
 	return (word_count);
 }
 
-static size_t	word_length(const char *s, char c)
+static size_t	word_length(char *s, char c)
 {
 	size_t	word_len;
 
@@ -43,7 +43,7 @@ static size_t	word_length(const char *s, char c)
 	return (word_len);
 }
 
-static char	*copy_word(const char *s, size_t len)
+static char	*copy_word(char *s, size_t len)
 {
 	char	*word;
 
@@ -78,7 +78,7 @@ static void	*ft_free_split(char **split, size_t len)
  * @return The array of new strings resulting from the split. Returns NULL
  *         if the allocation fails or 's' is NULL.
  */
-char	**ft_split(char const *s, char c)
+char	**ft_split(char *s, char c)
 {
 	char	**split;
 	size_t	i;

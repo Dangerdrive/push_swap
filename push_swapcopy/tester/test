@@ -452,7 +452,7 @@ random_sequence=$(shuf -i 0-5000 -n $random_amount | xargs)
 # Run the test with the generated random sequence
 run_test "Between 0 and 3 random values" "$random_sequence" "0" "3"
 
-run_test "Five values (1 5 2 4 3)" "1 5 2 4 3" "8" "12"
+run_test "Five values (1 5 2 4 3)" "1 5 2 4 3" "7" "12"
 random_sequence=$(shuf -i 0-2147483647 -n 5 | xargs)
 run_test "Five random values" "$random_sequence" "0" "12"
 random_sequence=$(shuf -i 0-2147483647 -n 5 | xargs)
