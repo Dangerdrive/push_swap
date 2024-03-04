@@ -32,7 +32,7 @@ static void	append_node(t_stack_node **stack, int n) //Define a function that se
 	if (!node)
 		return ;
 	node->next = NULL; //Set the next pointer of the new node to NULL because it will be the last node in the list
-	node->nbr = n; //Set the `next` data of of the new node to `n` value
+	node->value = n; //Set the `next` data of of the new node to `n` value
 	if (!(*stack)) //Check if the stack is empty or currently pointing to NULL, indicating a first node needs to be found
 	{
 		*stack = node; //If empty, update the pointer *stack to point to the node, effectively making it the new head of the linked list
@@ -46,7 +46,7 @@ static void	append_node(t_stack_node **stack, int n) //Define a function that se
 	}
 }
 
-void	init_stack_a(t_stack_node **a, char **argv) //Define a function that initiates stack `a` by handling any errors and appending required nodes to complete a stack
+void	populate_stack_a(t_stack_node **a, char **argv) //Define a function that initiates stack `a` by handling any errors and appending required nodes to complete a stack
 {
 	long	n;
 	int		i;
@@ -54,7 +54,7 @@ void	init_stack_a(t_stack_node **a, char **argv) //Define a function that initia
 	i = 0;
 	while (argv[i])
 	{
-		if (error_syntax(argv[i]))
+		if (is_valid_number(argv[i]))
 			free_errors(a);
 		n = ft_atol(argv[i]);
 		if (n > INT_MAX || n < INT_MIN) //Check for overflow
@@ -66,13 +66,13 @@ void	init_stack_a(t_stack_node **a, char **argv) //Define a function that initia
 	}
 }
 
-t_stack_node	*get_cheapest(t_stack_node *stack) //Define a function that searches for the cheapest node, that is set by bool
+t_stack_node	*get_optimal_node(t_stack_node *stack) //Define a function that searches for the cheapest node, that is set by bool
 {
 	if (!stack)
 		return (NULL);
 	while (stack)
 	{
-		if (stack->cheapest)
+		if (stack->is_optimal_move)
 			return (stack);
 		stack = stack->next;
 	}
@@ -87,14 +87,14 @@ void	prep_for_push(t_stack_node **stack,
 	{
 		if (stack_name == 'a') //If not, and it is stack `a`, execute the following
 		{
-			if (top_node->above_median)
+			if (top_node->is_above_median)
 				ra(stack, false);
 			else
 				rra(stack, false);
 		}
 		else if (stack_name == 'b') //If not, and it is stack `b`, execute the following
 		{
-			if (top_node->above_median)
+			if (top_node->is_above_median)
 				rb(stack, false);
 			else
 				rrb(stack, false);

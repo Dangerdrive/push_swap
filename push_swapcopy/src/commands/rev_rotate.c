@@ -1,6 +1,6 @@
 #include "../../inc/push_swap.h"
 
-static void	rev_rotate(t_stack_node **stack) //Define a funtion that rotates a stack's bottom node, to the top
+static void	reverse_rotate(t_stack_node **stack) //Define a funtion that rotates a stack's bottom node, to the top
 {
 	t_stack_node	*last; //To store the pointer to the last node
 
@@ -16,22 +16,22 @@ static void	rev_rotate(t_stack_node **stack) //Define a funtion that rotates a s
 
 void	rra(t_stack_node **a, bool print) //Rotate the bottom of `a` to the top of the stack and print the instruction
 {
-	rev_rotate(a);
+	reverse_rotate(a);
 	if (!print)
 		ft_printf("rra\n");
 }
 
 void	rrb(t_stack_node **b, bool print) //Rotate the bottom of `b` to the top of the stack and print the instruction
 {
-	rev_rotate(b);
+	reverse_rotate(b);
 	if (!print)
 		ft_printf("rrb\n");
 }
 
 void	rrr(t_stack_node **a, t_stack_node **b, bool print) //Stimultaneously rotate both stacks' bottom nodes to the top of their stacks, halving the cost of instructions
 {
-	rev_rotate(a);
-	rev_rotate(b);
+	reverse_rotate(a);
+	reverse_rotate(b);
 	if (!print)
 		ft_printf("rrr\n");
 }

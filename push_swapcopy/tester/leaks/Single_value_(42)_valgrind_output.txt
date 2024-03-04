@@ -1,30 +1,30 @@
-==81804== Memcheck, a memory error detector
-==81804== Copyright (C) 2002-2017, and GNU GPL'd, by Julian Seward et al.
-==81804== Using Valgrind-3.15.0 and LibVEX; rerun with -h for copyright info
-==81804== Command: ./push_swap 42
-==81804== 
-==81804== 
-==81804== HEAP SUMMARY:
-==81804==     in use at exit: 19 bytes in 2 blocks
-==81804==   total heap usage: 2 allocs, 0 frees, 19 bytes allocated
-==81804== 
-==81804== 3 bytes in 1 blocks are indirectly lost in loss record 1 of 2
-==81804==    at 0x483B7F3: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
-==81804==    by 0x403A4C: copy_word (in /nfs/homes/fde-alen/Documents/Projects/push_swap/push_swapcopy/push_swap)
-==81804==    by 0x4038D8: ft_split (in /nfs/homes/fde-alen/Documents/Projects/push_swap/push_swapcopy/push_swap)
-==81804==    by 0x4029F2: main (push_swap.c:765)
-==81804== 
-==81804== 19 (16 direct, 3 indirect) bytes in 1 blocks are definitely lost in loss record 2 of 2
-==81804==    at 0x483B7F3: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
-==81804==    by 0x403806: ft_split (in /nfs/homes/fde-alen/Documents/Projects/push_swap/push_swapcopy/push_swap)
-==81804==    by 0x4029F2: main (push_swap.c:765)
-==81804== 
-==81804== LEAK SUMMARY:
-==81804==    definitely lost: 16 bytes in 1 blocks
-==81804==    indirectly lost: 3 bytes in 1 blocks
-==81804==      possibly lost: 0 bytes in 0 blocks
-==81804==    still reachable: 0 bytes in 0 blocks
-==81804==         suppressed: 0 bytes in 0 blocks
-==81804== 
-==81804== For lists of detected and suppressed errors, rerun with: -s
-==81804== ERROR SUMMARY: 1 errors from 1 contexts (suppressed: 0 from 0)
+==97250== Memcheck, a memory error detector
+==97250== Copyright (C) 2002-2017, and GNU GPL'd, by Julian Seward et al.
+==97250== Using Valgrind-3.15.0 and LibVEX; rerun with -h for copyright info
+==97250== Command: ./push_swap 42
+==97250== 
+==97250== 
+==97250== HEAP SUMMARY:
+==97250==     in use at exit: 19 bytes in 2 blocks
+==97250==   total heap usage: 2 allocs, 0 frees, 19 bytes allocated
+==97250== 
+==97250== 3 bytes in 1 blocks are indirectly lost in loss record 1 of 2
+==97250==    at 0x483B7F3: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==97250==    by 0x40398C: copy_word (in /nfs/homes/fde-alen/Documents/Projects/push_swap/push_swapcopy/push_swap)
+==97250==    by 0x403818: ft_split (in /nfs/homes/fde-alen/Documents/Projects/push_swap/push_swapcopy/push_swap)
+==97250==    by 0x402952: main (push_swap.c:1085)
+==97250== 
+==97250== 19 (16 direct, 3 indirect) bytes in 1 blocks are definitely lost in loss record 2 of 2
+==97250==    at 0x483B7F3: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==97250==    by 0x403746: ft_split (in /nfs/homes/fde-alen/Documents/Projects/push_swap/push_swapcopy/push_swap)
+==97250==    by 0x402952: main (push_swap.c:1085)
+==97250== 
+==97250== LEAK SUMMARY:
+==97250==    definitely lost: 16 bytes in 1 blocks
+==97250==    indirectly lost: 3 bytes in 1 blocks
+==97250==      possibly lost: 0 bytes in 0 blocks
+==97250==    still reachable: 0 bytes in 0 blocks
+==97250==         suppressed: 0 bytes in 0 blocks
+==97250== 
+==97250== For lists of detected and suppressed errors, rerun with: -s
+==97250== ERROR SUMMARY: 1 errors from 1 contexts (suppressed: 0 from 0)

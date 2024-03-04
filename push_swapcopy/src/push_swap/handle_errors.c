@@ -1,6 +1,6 @@
 #include "../../inc/push_swap.h"
 
-int	error_syntax(char *str_n) //Define a funtion to handle syntax errors, and returns `1` for `error` should any of the following conditions are met
+int	is_valid_number(char *str_n) //Define a funtion to handle syntax errors, and returns `1` for `error` should any of the following conditions are met
 {
 	if (!(*str_n == '+'
 			|| *str_n == '-'
@@ -24,7 +24,7 @@ int	error_duplicate(t_stack_node *a, int n) //Define a function that checks for 
 		return (0);
 	while (a) //Loop until the end of stack `a` is reached
 	{
-		if (a->nbr == n) //Check if the current node's value is equal to `n`. Refer to `init_stack_a()`
+		if (a->value == n) //Check if the current node's value is equal to `n`. Refer to `init_stack_a()`
 			return (1);
 		a = a->next; //Move to the next node to check for duplicates
 	}
@@ -42,7 +42,7 @@ void	free_stack(t_stack_node **stack) //Define a function to free a stack if the
 	while (current) //As long as a node exist in the stack
 	{
 		tmp = current->next; //Assign to `tmp` the pointer to the next node
-		current->nbr = 0; //Assigning the node to `0` before freeing is not strictly necessary but it can help catch potential bugs such as memory-leaks and improve debugging
+		current->value = 0; //Assigning the node to `0` before freeing is not strictly necessary but it can help catch potential bugs such as memory-leaks and improve debugging
 		free(current); //Free the current node, deallocating the memory occupied by that node
 		current = tmp; //Assign `tmp` as the current first node
 	}
