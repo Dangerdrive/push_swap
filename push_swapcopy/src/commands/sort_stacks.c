@@ -7,8 +7,8 @@ static void	rotate_both(t_stack_node **a,
 	while (*b != cheapest_node->target_node
 		&& *a != cheapest_node) //As long as the current `b` node is not `a` cheapest node's target node, and the current top `a` node is not the top node
 		rr(a, b, false); //Rotate both `a` and `b` nodes
-	current_index(*a);
-	current_index(*b);
+	set_positions(*a);
+	set_positions(*b);
 }
 
 static void	rev_rotate_both(t_stack_node **a,
@@ -18,8 +18,8 @@ static void	rev_rotate_both(t_stack_node **a,
 	while (*b != cheapest_node->target_node
 		&& *a != cheapest_node) //As long as the current `b` node is not `a` cheapest node's target node && and the current `a` node is not the cheapest
 		rrr(a, b, false); //Reverse rotate both `a` and `b` nodes
-	current_index(*a); //Refresh current node positions
-	current_index(*b);
+	set_positions(*a); //Refresh current node positions
+	set_positions(*b);
 }
 
 static void	move_a_to_b(t_stack_node **a, t_stack_node **b) //Define a function that prepares the cheapest nodes on top of the stacks for pushing `a` nodes to stack `b`, until there are three nodes left in `a`
@@ -75,6 +75,6 @@ void	sort_stacks(t_stack_node **a, t_stack_node **b) //Define a function that so
 		init_nodes_b(*a, *b); //Initiate all nodes from both stacks
 		move_b_to_a(a, b); //Move all `b` nodes back to a sorted stack `a`
 	}
-	current_index(*a); //Refresh the current position of stack `a`
+	set_positions(*a); //Refresh the current position of stack `a`
 	rotate_min_to_top(a); //Ensure smallest number is on top
 }

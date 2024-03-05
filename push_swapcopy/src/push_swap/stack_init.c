@@ -21,7 +21,7 @@ static long	ft_atol(const char *s) //Define a function that converts every strin
 	return (result * sign);
 }
 
-static void	append_node(t_stack_node **stack, int n) //Define a function that searches for the last node to append to the linked list
+static void	add_node_back(t_stack_node **stack, int n) //Define a function that searches for the last node to append to the linked list
 {
 	t_stack_node	*node; //To store a pointer to the new node to be created with the value `n`
 	t_stack_node	*last_node; //To store a pointer to the current last node of the stack
@@ -61,7 +61,7 @@ void	populate_stack_a(t_stack_node **a, char **argv) //Define a function that in
 			free_errors(a);
 		if (error_duplicate(*a, (int)n))
 			free_errors(a); 
-		append_node(a, (int)n); //If no errors, append the node to the linked list by, taking a pointer to stack `a`, create a new node and assign `n` to that new node
+		add_node_back(a, (int)n); //If no errors, append the node to the linked list by, taking a pointer to stack `a`, create a new node and assign `n` to that new node
 		i++;
 	}
 }

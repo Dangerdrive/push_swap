@@ -1,6 +1,6 @@
 #include "../../inc/push_swap.h"
 
-void	current_index(t_stack_node *stack)
+void	set_positions(t_stack_node *stack)
 {
 	int	i; //To store the index of the current node
 	int	median; //To store the position of the median of the stack
@@ -21,7 +21,7 @@ void	current_index(t_stack_node *stack)
 	}
 }
 
-static void	set_target_a(t_stack_node *a, t_stack_node *b)//Find `a` node's target in stack `b`
+static void	set_targets_for_a(t_stack_node *a, t_stack_node *b)//Find `a` node's target in stack `b`
 {
 	t_stack_node	*current_b; //To store the pointer to the current node in stack `b` and iterate through each node following
 	t_stack_node	*target_node; //To store the pointer to the target node in stack `b`
@@ -49,7 +49,7 @@ static void	set_target_a(t_stack_node *a, t_stack_node *b)//Find `a` node's targ
 	}
 }
 
-static void	cost_analysis_a(t_stack_node *a, t_stack_node *b) //Define a functio that analyses the cost of the `a` node along with it's target `b` node, which is the sum of the number of instructions for both the nodes to rotate to the top of their stacks
+static void	calculate_moves_for_a(t_stack_node *a, t_stack_node *b) //Define a functio that analyses the cost of the `a` node along with it's target `b` node, which is the sum of the number of instructions for both the nodes to rotate to the top of their stacks
 {
 	int	len_a; //To store the length of stack `a`
 	int	len_b; //To store the length of stack `b`
@@ -69,7 +69,7 @@ static void	cost_analysis_a(t_stack_node *a, t_stack_node *b) //Define a functio
 	}
 }
 
-void	set_cheapest(t_stack_node *stack) //Define a function that sets a node's `cheapest` attribute as `true` or `false`
+void	set_optimal_move(t_stack_node *stack) //Define a function that sets a node's `cheapest` attribute as `true` or `false`
 {
 	long			cheapest_value; //To store the value of the cheapest node so far
 	t_stack_node	*cheapest_node; //To store a pointer to the cheapest node so far
@@ -91,9 +91,9 @@ void	set_cheapest(t_stack_node *stack) //Define a function that sets a node's `c
 
 void	init_nodes_a(t_stack_node *a, t_stack_node *b) //Define a function that combines all the functions needed to prepare stack `a`, ready for our pushing and sorting. These functions set the data inside the node's structure
 {
-	current_index(a);
-	current_index(b);
-	set_target_a(a, b);
-	cost_analysis_a(a, b);
-	set_cheapest(a);
+	set_positions(a);
+	set_positions(b);
+	set_targets_for_a(a, b);
+	calculate_moves_for_a(a, b);
+	set_optimal_move(a);
 }

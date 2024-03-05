@@ -1,9 +1,6 @@
 /*push.c*/
 #include "../inc/push_swap.h"
 
-// Note: Please keep documentation within 80 columns for readability.
-
-// Note: Please keep documentation within 80 columns for readability.
 
 /**
  * Initializes a new stack node with default values.
@@ -28,206 +25,12 @@ void	init_node(t_stack_node *stack)
 	stack->prev = NULL;
 }
 
-/**
- * Transfers the top node from the source stack to the top of the destination stack.
- * 
- * This function moves the top (head) node of the source stack to become the new top node
- * of the destination stack. It correctly updates pointers to maintain the integrity of both
- * stacks. If the source stack is empty, the function does nothing.
- *
- * @param dest Pointer to the pointer of the top node of the destination stack.
- * @param src Pointer to the pointer of the top node of the source stack.
- */
-static void	push(t_stack_node **dest, t_stack_node **src)
-{
-	t_stack_node	*node_to_push;
-
-	if (!*src)
-		return ;
-	node_to_push = *src;
-	*src = (*src)->next;
-	if (*src)
-		(*src)->prev = NULL;
-	node_to_push->prev = NULL;
-	if (!*dest)
-	{
-		*dest = node_to_push;
-		node_to_push->next = NULL;
-	}
-	else
-	{
-		node_to_push->next = *dest;
-		node_to_push->next->prev = node_to_push;
-		*dest = node_to_push;
-	}
-}
-
-/**
- * Pushes the top node from stack 'b' to stack 'a' and optionally prints the operation.
- *
- * @param a Pointer to the top of stack 'a', which will receive the top node from stack 'b'.
- * @param b Pointer to the top of stack 'b', the source stack for the push operation.
- * @param print If false, prints "pa\n" to indicate the push action; does not print if true.
- */
-void	pa(t_stack_node **a, t_stack_node **b)
-{
-	push(a, b);
-	ft_printf("pa\n");
-}
-
-/**
- * Pushes the top node from stack 'b' to stack 'a' and optionally prints the operation.
- *
- * @param a Pointer to the top of stack 'a', which will receive the top node from stack 'b'.
- * @param b Pointer to the top of stack 'b', the source stack for the push operation.
- * @param print If false, prints "pa\n" to indicate the push action; does not print if true.
- */
-void	pb(t_stack_node **b, t_stack_node **a)
-{
-	push(b, a);
-	ft_printf("pb\n");
-}
 
 /*reverse_rotate.c*/
-/**
- * Performs a reverse rotation on a given stack.
- *
- * In a reverse rotation, the last element of the stack becomes the first,
- * effectively rotating the stack upwards. The function does nothing if the
- * stack is empty or has only one element.
- *
- * @param stack Pointer to the top node of the stack to be reverse rotated.
- */
-static void	reverse_rotate(t_stack_node **stack)
-{
-	t_stack_node	*last;
 
-	if (!*stack || !(*stack)->next)
-		return ;
-	last = find_last(*stack);
-	last->prev->next = NULL;
-	last->next = *stack;
-	last->prev = NULL;
-	*stack = last;
-	last->next->prev = last;
-}
-
-/**
- * Performs a reverse rotate operation on stack 'a' and optionally prints the operation.
- *
- * This function applies a reverse rotation on stack 'a', moving the last element to the top of the stack.
- *
- * @param a Pointer to the top node of stack 'a' to be reverse rotated.
- * @param print If false, "rra\n" is printed to indicate the reverse rotate action; no output if true.
- */
-void	rra(t_stack_node **a)
-{
-	reverse_rotate(a);
-	ft_printf("rra\n");
-}
-
-/**
- * Performs a reverse rotate operation on stack 'b' and optionally prints the operation.
- *
- * This function applies a reverse rotation on stack 'b', moving the last element to the top of the stack.
- *
- * @param b Pointer to the top node of stack 'b' to be reverse rotated.
- * @param print If false, "rra\n" is printed to indicate the reverse rotate action; no output if true.
- */
-void	rrb(t_stack_node **b)
-{
-	reverse_rotate(b);
-	ft_printf("rrb\n");
-}
-
-/**
- * Performs a reverse rotate operation on both stacks 'a' and 'b' and optionally prints the operation.
- *
- * This function applies a reverse rotation on stacks 'a' and 'b', moving the last element to the top of the stack.
- *
- * @param a Pointer to the top node of stacks 'a' and 'b' to be reverse rotated.
- * @param b Pointer to the top node of stack 'b' to be reverse rotated.
- * @param print If false, "rra\n" is printed to indicate the reverse rotate action; no output if true.
- */
-void	rrr(t_stack_node **a, t_stack_node **b)
-{
-	reverse_rotate(a);
-	reverse_rotate(b);
-	ft_printf("rrr\n");
-}
 
 /*rotate.c*/
-/**
- * Rotates the elements of a given stack upwards.
- *
- * The first element becomes the last one, and all other elements move up by one position.
- * This operation is skipped if the stack is empty or contains only one element.
- *
- * @param stack Pointer to the stack to be rotated.
- */
-static void	rotate(t_stack_node **stack)
-{
-	t_stack_node	*last_node;
 
-	if (!*stack || !(*stack)->next)
-		return ;
-	last_node = find_last(*stack);
-	last_node->next = *stack;
-	*stack = (*stack)->next;
-	(*stack)->prev = NULL;
-	last_node->next->prev = last_node;
-	last_node->next->next = NULL;
-}
-
-/**
- * Rotates the elements of stack 'a' upwards 
- * and optionally prints the operation.
- *
- * Rotates stack 'a' by moving the top element to the bottom, effectively
- * cycling the stack's elements. This prepares 'a' for subsequent manipulations
- *
- * @param a Pointer to the top of stack 'a' for rotation.
- * @param print When false, "ra" is printed; silent if true.
- */
-void	ra(t_stack_node **a)
-{
-	rotate(a);
-	ft_printf("ra\n");
-}
-
-/**
- * Rotates stack 'b' upwards, optionally printing "rb".
- *
- * Elements in stack 'b' are rotated upwards, moving the top element to the
- * bottom. This action rearranges the stack for further operations.
- *
- * @param b Pointer to stack 'b''s top node for rotation.
- * @param print If false, prints "rb" to signal the rotation; silent if true.
- */
-
-void	rb(t_stack_node **b)
-{
-	rotate(b);
-	ft_printf("rb\n");
-}
-
-/**
- * Rotates stacks 'a' and 'b' upwards, optionally printing "rr".
- *
- * Elements in stacks 'a' and 'b' are rotated upwards, with the first element
- * moving to the last position. This uniform action aligns both stacks for
- * subsequent operations.
- *
- * @param a Pointer to stack 'a''s top node for rotation.
- * @param b Pointer to stack 'b''s top node for rotation.
- * @param print Controls printing of "rr" to indicate rotation.
- */
-void	rr(t_stack_node **a, t_stack_node **b)
-{
-	rotate(a);
-	rotate(b);
-	ft_printf("rr\n");
-}
 
 /*sort_stacks.c*/
 /**
@@ -240,7 +43,6 @@ void	rr(t_stack_node **a, t_stack_node **b)
  * @param a Pointer to stack 'a''s top node, the push source.
  * @param b Pointer to stack 'b''s top node, the push destination.
  */
-
 static void	rotate_both(t_stack_node **a,
 						t_stack_node **b,
 						t_stack_node *cheapest_node)
@@ -248,8 +50,8 @@ static void	rotate_both(t_stack_node **a,
 	while (*b != cheapest_node->target_node
 		&& *a != cheapest_node)
 		rr(a, b);
-	current_index(*a);
-	current_index(*b);
+	set_positions(*a);
+	set_positions(*b);
 }
 
 /**
@@ -262,16 +64,15 @@ static void	rotate_both(t_stack_node **a,
  * @param b Pointer to top node of stack 'b', destination for the push.
  * @param cheapest_node Pointer to cheapest node in 'a' for the push.
  */
-
 static void	rev_rotate_both(t_stack_node **a,
 								t_stack_node **b,
-								t_stack_node *cheapest_node)
+								t_stack_node *optimal_node)
 {
-	while (*b != cheapest_node->target_node
-		&& *a != cheapest_node)
+	while (*b != optimal_node->target_node
+		&& *a != optimal_node)
 		rrr(a, b);
-	current_index(*a);
-	current_index(*b);
+	set_positions(*a);
+	set_positions(*b);
 }
 
 /**
@@ -359,7 +160,7 @@ void	sort_stacks(t_stack_node **a, t_stack_node **b)
 		init_nodes_b(*a, *b);
 		move_b_to_a(a, b);
 	}
-	current_index(*a);
+	set_positions(*a);
 	rotate_min_to_top(a);
 }
 
@@ -395,78 +196,6 @@ void	sort_three(t_stack_node **a)
 }
 
 /*swap.c*/
-/**
- * Swaps the top two elements of a given stack.
- *
- * This function swaps the top two elements of a given stack. 
- * It does nothing if the stack is empty
- * or has only one element.
- *
- * @param head Pointer to the top node of the stack to be swapped.
- */
-static void	swap(t_stack_node **head)
-{
-	if (!*head || !(*head)->next)
-		return ;
-	*head = (*head)->next;
-	(*head)->prev->prev = *head;
-	(*head)->prev->next = (*head)->next;
-	if ((*head)->next)
-		(*head)->next->prev = (*head)->prev;
-	(*head)->next = (*head)->prev;
-	(*head)->prev = NULL;
-}
-
-/**
- * Swaps the top two elements of stack 'a' and optionally prints the operation.
- *
- * This function swaps the top two elements of stack 'a',
- *  effectively reversing their positions.
- *
- * @param a Pointer to the top node of stack 'a' to be swapped.
- * @param print If false, "sa\n" is printed to indicate the swap action;
- *  no output if true.
- */
-void	sa(t_stack_node	**a)
-{
-	swap(a);
-	ft_printf("sa\n");
-}
-
-/**
- * Swaps the top two elements of stack 'b' and optionally prints the operation.
- *
- * This function swaps the top two elements of stack 'b',
- *  effectively reversing their positions.
- *
- * @param b Pointer to the top node of stack 'b' to be swapped.
- * @param print If false, "sb\n" is printed to indicate the swap action;
- *  no output if true.
- */
-void	sb(t_stack_node **b)
-{
-	swap(b);
-	ft_printf("sb\n");
-}
-
-/**
- * Swaps the top two elements of stacks 'a' and 'b' and optionally
- *  prints the operation.
- *
- * This function swaps the top two elements of stacks 'a' and 'b',
- * effectively reversing their positions.
- *
- * @param a Pointer to the top node of stack 'a' to be swapped.
- * @param b Pointer to the top node of stack 'b' to be swapped.
- * @param print If false, "ss\n" is printed to indicate the swap action;
- *  no output if true.
- */
-void	ss(t_stack_node **a, t_stack_node **b)
-{
-	swap(a);
-	swap(b);
-	ft_printf("ss\n");
-}
 
 /*handle_errors.c*/
 /**
@@ -524,8 +253,18 @@ bool	has_duplicate(t_stack_node *a, int n)
 
 //keep the documentation within 80 columns
 
-/*
-*/
+/**
+ * Frees all nodes in a stack and sets the stack pointer to NULL.
+ *
+ * Iterates through the stack starting from the top node, freeing each node
+ * sequentially. Before freeing, it zeroes out the value of the node as a
+ * precautionary measure. After all nodes are freed, the stack pointer is
+ * set to NULL to indicate that the stack is empty and prevent dangling pointer
+ * access.
+ *
+ * @param stack Double pointer to the top node of the stack to be freed. This
+ *              allows directly modifying the original stack pointer to NULL.
+ */
 void free_stack(t_stack_node **stack)
 {
 	t_stack_node *next_node;
@@ -546,6 +285,17 @@ void free_stack(t_stack_node **stack)
 	*stack = NULL;
 }
 
+/**
+ * Frees the stack and exits the program with an error message.
+ *
+ * This function is called upon encountering an error condition. It first frees
+ * the memory allocated for the stack to prevent memory leaks. Then, it prints
+ * an "Error" message to standard output to inform the user of the issue. Finally,
+ * it exits the program with a status code of 1, indicating an error has occurred.
+ *
+ * @param a Double pointer to the top node of the stack that needs to be freed
+ *          due to an error condition.
+ */
 void	free_errors(t_stack_node **a)
 {
 	free_stack(a);
@@ -554,56 +304,90 @@ void	free_errors(t_stack_node **a)
 }
 
 /*init_a_to_b.c*/
-void	current_index(t_stack_node *stack)
+/**
+ * Assigns the current position to each node in the stack and marks if it is above
+ * the median position.
+ *
+ * Iterates through the stack, assigning each node an index starting from 0 and
+ * determining if it is positioned above or below the median of the stack's
+ * length. This classification aids in optimizing operations that depend on
+ * the node's position relative to the stack's median.
+ *
+ * @param stack Pointer to the top node of the stack to be indexed.
+ */
+void	set_positions(t_stack_node *first_node)
 {
 	int	i;
 	int	median;
 
 	i = 0;
-	if (!stack)
+	if (!first_node)
 		return ;
-	median = stack_len(stack) / 2;
-	while (stack)
+	median = stack_len(first_node) / 2;
+	while (first_node)
 	{
-		stack->position = i;
+		first_node->position = i;
 		if (i <= median)
-			stack->is_above_median = true;
+			first_node->is_above_median = true;
 		else
-			stack->is_above_median = false;
-		stack = stack->next;
+			first_node->is_above_median = false;
+		first_node = first_node->next;
 		++i;
 	}
 }
 
-static void	set_target_a(t_stack_node *a, t_stack_node *b)//Find `a` node's target in stack `b`
+/**
+ * Assigns optimal target nodes in stack 'b' for each node in stack 'a'.
+ *
+ * For every node in stack 'a', this function finds the closest higher value
+ * node in stack 'b' to set as its target. If no such node exists in 'b', the
+ * highest value node in 'b' is assigned as the target. This aims to optimize
+ * the push and rotate operations by pre-calculating the most efficient target
+ * positions for nodes in 'a' to be moved to 'b'.
+ *
+ * @param a Pointer to the top node of stack 'a'.
+ * @param b Pointer to the top node of stack 'b'.
+ */
+static void	set_targets_for_a(t_stack_node *a, t_stack_node *b)
 {
-	t_stack_node	*current_b;
-	t_stack_node	*target_node;
-	long			best_match_index;
-
+	t_stack_node	*current_node_b;
+	t_stack_node	*optimal_target;
+	long			optimal_value;
+	
 	while (a)
 	{
-		best_match_index = LONG_MIN;
-		current_b = b;
-		while (current_b)
+		optimal_value = LONG_MIN;
+		current_node_b = b;
+		while (current_node_b)
 		{
-			if (current_b->value < a->value
-				&& current_b->value > best_match_index)
+			if (current_node_b->value < a->value
+				&& current_node_b->value > optimal_value)
 			{
-				best_match_index = current_b->value;
-				target_node = current_b;
+				optimal_value = current_node_b->value;
+				optimal_target = current_node_b;
 			}
-			current_b = current_b->next;
+			current_node_b = current_node_b->next;
 		}
-		if (best_match_index == LONG_MIN)
+		if (optimal_value == LONG_MIN)
 			a->target_node = get_max_value_node(b);
 		else
-			a->target_node = target_node;
+			a->target_node = optimal_target;
 		a = a->next;
 	}
 }
 
-static void	cost_analysis_a(t_stack_node *a, t_stack_node *b)
+/**
+ * Calculates move costs for nodes in stack 'a'.
+ *
+ * For each node in stack 'a', it calculates the total moves needed for
+ * optimal positioning. This considers the node's current position, target
+ * position in stack 'b', and whether it's above the median. The goal is
+ * efficient repositioning to minimize 'total_moves'.
+ *
+ * @param a Pointer to stack 'a's top node.
+ * @param b Pointer to stack 'b's top node for target positions.
+ */
+static void	calculate_moves_for_a(t_stack_node *a, t_stack_node *b)
 {
 	int	len_a;
 	int	len_b;
@@ -623,147 +407,118 @@ static void	cost_analysis_a(t_stack_node *a, t_stack_node *b)
 	}
 }
 
-void	set_cheapest(t_stack_node *stack)
+/**
+ * Identifies and marks the node with the minimum total moves as the optimal move.
+ *
+ * Iterates through the stack to find the node with the least number of total
+ * moves required to reach its designated position, marking it as the optimal
+ * move for an operation. This function helps in optimizing stack operations
+ * by identifying the most efficient move at the current state of the stack.
+ *
+ * @param stack Pointer to the top node of the stack to be evaluated.
+ */
+void	set_optimal_move(t_stack_node *stack)
 {
-	long			cheapest_value;
-	t_stack_node	*cheapest_node;
+	long			min_moves;
+	t_stack_node	*optimal_node;
 
 	if (!stack)
 		return ;
-	cheapest_value = LONG_MAX;
+	min_moves = LONG_MAX;
 	while (stack)
 	{
-		if (stack->total_moves < cheapest_value)
+		if (stack->total_moves < min_moves)
 		{
-			cheapest_value = stack->total_moves;
-			cheapest_node = stack;
+			min_moves = stack->total_moves;
+			optimal_node = stack;
 		}
 		stack = stack->next;
 	}
-	cheapest_node->is_optimal_move = true;
+	optimal_node->is_optimal_move = true;
 }
 
+/**
+ * Initializes and prepares nodes in stack 'a' for sorting operations.
+ *
+ * This function performs a series of initializations and analyses on stack 'a'
+ * to facilitate efficient sorting. It assigns positional indexes to nodes in
+ * both stacks 'a' and 'b', identifies target nodes in stack 'a' based on their
+ * relationship with nodes in stack 'b', performs a cost analysis to determine
+ * the optimal moves for sorting, and finally marks the node in stack 'a' that
+ * represents the most efficient move as the optimal move.
+ *
+ * @param a Pointer to the top node of stack 'a'.
+ * @param b Pointer to the top node of stack 'b'.
+ */
 void	init_nodes_a(t_stack_node *a, t_stack_node *b)
 {
-	current_index(a);
-	current_index(b);
-	set_target_a(a, b);
-	cost_analysis_a(a, b);
-	set_cheapest(a);
+	set_positions(a);
+	set_positions(b);
+	set_targets_for_a(a, b);
+	calculate_moves_for_a(a, b);
+	set_optimal_move(a);
 }
 
 /*init_b_to_a.c*/
-static void	set_target_b(t_stack_node *a, t_stack_node *b)
+/**
+ * Assigns each node in stack 'b' a target node in stack 'a' for optimal movement.
+ *
+ * Iterates through stack 'b', for each node, finding the closest higher value in
+ * stack 'a'. This closest higher value is marked as the target node for movements.
+ * If no higher value is found (implying 'b' node's value is higher than all in 'a'),
+ * the target is set to the minimum value node in 'a', ensuring logical stack operations.
+ *
+ * @param a The source stack from which target nodes are identified.
+ * @param b The target stack for which nodes are being analyzed and assigned targets.
+ */
+static void	set_targets_for_b(t_stack_node *a, t_stack_node *b)
 {
-	t_stack_node	*current_a;
-	t_stack_node	*target_node;
-	long			best_match_index;
+	t_stack_node	*current_node_a;
+	t_stack_node	*optimal_target;
+	long			optimal_value;
 
 	while (b)
 	{
-		best_match_index = LONG_MAX;
-		current_a = a;
-		while (current_a)
+		optimal_value = LONG_MAX;
+		current_node_a = a;
+		while (current_node_a)
 		{
-			if (current_a->value > b->value
-				&& current_a->value < best_match_index)
+			if (current_node_a->value > b->value
+				&& current_node_a->value < optimal_value)
 			{
-				best_match_index = current_a->value;
-				target_node = current_a;
+				optimal_value = current_node_a->value;
+				optimal_target = current_node_a;
 			}
-			current_a = current_a->next;
+			current_node_a = current_node_a->next;
 		}
-		if (best_match_index == LONG_MAX)
+		if (optimal_value == LONG_MAX)
 			b->target_node = get_min_value_node(a);
 		else
-			b->target_node = target_node;
+			b->target_node = optimal_target;
 		b = b->next;
 	}
 }
 
+/**
+ * Initializes nodes in stack 'b' based on stack 'a'.
+ *
+ * Assigns positional indexes to nodes in both stacks 'a' and 'b' and
+ * then sets the target node for elements in stack 'b' based on their
+ * positional relationship to nodes in stack 'a'. This prepares stack 'b'
+ * for operations by identifying the optimal targets for moves considering
+ * the current state of stack 'a'.
+ *
+ * @param a Pointer to the top node of stack 'a'.
+ * @param b Pointer to the top node of stack 'b'.
+ */
 void	init_nodes_b(t_stack_node *a, t_stack_node *b)
 {
-	current_index(a);
-	current_index(b);
-	set_target_b(a, b);
+	set_positions(a);
+	set_positions(b);
+	set_targets_for_b(a, b);
 }
 
 /*split.c*/
-static int	count_words(char *s, char c)
-{
-	int		count;
-	bool	inside_word;
-
-	count = 0;
-	while (*s)
-	{
-		inside_word = false;
-		while (*s == c)
-			++s;
-		while (*s != c && *s)
-		{
-			if (!inside_word)
-			{
-				++count;
-				inside_word = true;
-			}
-			++s;
-		}
-	}
-	return (count);
-}
-
-static char	*get_next_word(char *s, char c)
-{
-	static int	cursor = 0;
-	char		*next_word;
-	int			len;
-	int			i;
-
-	len = 0;
-	i = 0;
-	while (s[cursor] == c)
-		++cursor;
-	while ((s[cursor + len] != c) && s[cursor + len])
-		++len;
-	next_word = malloc((size_t)len * sizeof(char) + 1);
-	if (!next_word)
-		return (NULL);
-	while ((s[cursor] != c) && s[cursor])
-		next_word[i++] = s[cursor++];
-	next_word[i] = '\0';
-	return (next_word);
-}
-
-char **split(char *s, char c)
-{
-	int		words_count;
-	char	**result_array;
-	int		i;
-
-	i = 0;
-	words_count = count_words(s, c);
-	if (!words_count)
-		exit(1);
-	result_array = malloc(sizeof(char *) * (size_t)(words_count + 2));
-	if (!result_array)
-		return (NULL);
-	while (words_count-- >= 0)
-	{
-		if (i == 0)
-		{
-			result_array[i] = malloc(sizeof(char));
-			if (!result_array[i])
-				return (NULL);
-			result_array[i++][0] = '\0';
-			continue ;
-		}
-		result_array[i++] = get_next_word(s, c);
-	}
-	result_array[i] = NULL;
-	return (result_array);
-}
-
 
 /*
  Both functions, `ft_split()` `split()` split a string into an array of substrings using a specified delimiter character.
@@ -808,29 +563,18 @@ In summary, both functions perform string tokenization, but they have difference
 management, and error handling.
 */
 
-/*stack_init.c*/
-// static long	ft_atol(const char *s)
-// {
-// 	long	result;
-// 	int		sign;
-
-// 	result = 0;
-// 	sign = 1;
-// 	while (*s == ' ' || *s == '\t' || *s == '\n' || \
-// 			*s == '\r' || *s == '\f' || *s == '\v')
-// 		s++;
-// 	if (*s == '-' || *s == '+')
-// 	{
-// 		if (*s == '-')
-// 			sign = -1;
-// 		s++;
-// 	}
-// 	while (ft_isdigit(*s))
-// 		result = result * 10 + (*s++ - '0');
-// 	return (result * sign);
-// }
-
-static void	append_node(t_stack_node **stack, int n)
+/**
+ * Adds a new node with a specified value to the end of a stack.
+ *
+ * Allocates memory for a new node, initializes it, and sets its value to the
+ * specified integer. If the stack is empty, the new node becomes the first
+ * node. Otherwise, the new node is appended to the end, maintaining the
+ * doubly linked list structure by updating the 'next' and 'prev' pointers.
+ *
+ * @param stack Double pointer to the top node of the stack.
+ * @param n The integer value to assign to the new node.
+ */
+static void	add_node_back(t_stack_node **stack, int n)
 {
 	t_stack_node	*node;
 	t_stack_node	*last_node;
@@ -843,13 +587,9 @@ static void	append_node(t_stack_node **stack, int n)
 	if (!node)
 		return ;
 	init_node(node);
-	//node->next = NULL;
 	node->value = n;
 	if (!(*stack))
-	{
 		*stack = node;
-		//node->prev = NULL;
-	}
 	else
 	{
 		last_node = find_last(*stack);
@@ -884,7 +624,7 @@ void	populate_stack_a(t_stack_node **a, char **argv)
 			free_errors(a);
 		if (has_duplicate(*a, (int)value))
 			free_errors(a);
-		append_node(a, (int)value);
+		add_node_back(a, (int)value);
 		i++;
 	}
 }
@@ -914,7 +654,19 @@ t_stack_node	*get_optimal_node(t_stack_node *stack)
 	return (NULL);
 }
 
-
+/**
+ * Realigns stack to prepare a specific node for push operation.
+ *
+ * Adjusts the given stack by rotating or reverse rotating it until the
+ * specified node is at the top. This preparation step is crucial for
+ * efficiently executing a push operation. It determines the direction
+ * of rotation based on the node's position relative to the median and
+ * applies the appropriate rotation command based on the stack's identity.
+ *
+ * @param stack Pointer to the stack ('a' or 'b') to be adjusted.
+ * @param top_node The node to move to the top of the stack.
+ * @param stack_name Identifier for the stack ('a' or 'b').
+ */
 void	prep_for_push(t_stack_node **stack,
 						t_stack_node *top_node,
 						char stack_name)
@@ -1072,6 +824,20 @@ t_stack_node	*get_max_value_node(t_stack_node *stack)
 }
 
 /*push_swap.c*/
+/**
+ * The main entry point for the push_swap program.
+ *
+ * Initializes two stacks, 'a' and 'b', and populates stack 'a' with integers
+ * from the command line arguments. If stack 'a' is not already sorted, it
+ * applies sorting algorithms based on the number of integers. For 2 or 3
+ * integers, specific small sort functions are called. For more integers, a
+ * general sorting algorithm is applied. Finally, the program frees allocated
+ * memory before exiting.
+ *
+ * @param argc The number of command line arguments.
+ * @param argv The array of command line arguments.
+ * @return 0 on successful execution, 1 if input is invalid or missing.
+ */
 int	main(int argc, char **argv)
 {
 	t_stack_node	*a;

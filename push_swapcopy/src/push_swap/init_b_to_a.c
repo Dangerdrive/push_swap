@@ -1,6 +1,6 @@
 #include "../../inc/push_swap.h"
 
-static void	set_target_b(t_stack_node *a, t_stack_node *b) //Define a function that sets for the current `a` node, its target node from stack `a`
+static void	set_targets_for_b(t_stack_node *a, t_stack_node *b) //Define a function that sets for the current `a` node, its target node from stack `a`
 {
 	t_stack_node	*current_a; //To store the pointer to the current `a` node
 	t_stack_node	*target_node; //To store the pointer of the target node for `b` node
@@ -30,7 +30,7 @@ static void	set_target_b(t_stack_node *a, t_stack_node *b) //Define a function t
 
 void	init_nodes_b(t_stack_node *a, t_stack_node *b) //Define a function that prepares the nodes for pushing `b` to `a`
 {
-	current_index(a);
-	current_index(b);
-	set_target_b(a, b);
+	set_positions(a);
+	set_positions(b);
+	set_targets_for_b(a, b);
 }

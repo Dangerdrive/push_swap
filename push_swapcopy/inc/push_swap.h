@@ -31,8 +31,8 @@ char			**split(char *s, char c); //To handle input of numbers as a string argume
 //***Nodes initiation
 void			init_nodes_a(t_stack_node *a, t_stack_node *b); //To prep all nodes for pushing `a` to `b`
 void			init_nodes_b(t_stack_node *a, t_stack_node *b); //To prep all nodes for pushing `b` back to `a`
-void			current_index(t_stack_node *stack); //Set the node's current index
-void			set_cheapest(t_stack_node *stack); //Set the stack's cheapest node
+void			set_positions(t_stack_node *stack); //Set the node's current index
+void			set_optimal_move(t_stack_node *stack); //Set the stack's cheapest node
 t_stack_node	*get_optimal_node(t_stack_node *stack); //Get the cheapest node of a stack
 void			prep_for_push(t_stack_node **s, t_stack_node *n, char c); //Prep the required nodes on top for pushing
 
