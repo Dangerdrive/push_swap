@@ -260,11 +260,11 @@ void	move_a_to_b(t_stack_node **a, t_stack_node **b)
 	pb(b, a, true);
 }
 
-void	move_b_to_a(t_stack_node **a, t_stack_node **b)
-{
-	prep_for_push(a, (*b)->target_node, 'a');
-	pa(a, b, true);
-}
+// void	move_b_to_a(t_stack_node **a, t_stack_node **b)
+// {
+// 	prep_for_push(a, (*b)->target_node, 'a');
+// 	pa(a, b, true);
+// }
 
 void	min_on_top(t_stack_node **a)
 {
@@ -295,7 +295,9 @@ void	sort_stacks(t_stack_node **a, t_stack_node **b)
 	while (*b)
 	{
 		init_nodes_b(*a, *b);
-		move_b_to_a(a, b);
+		//move_b_to_a(a, b);
+		prep_for_push(a, (*b)->target_node, 'a');
+		pa(a, b, true);
 	}
 	current_index(*a);
 	min_on_top(a);
@@ -378,7 +380,7 @@ void	set_target_a(t_stack_node *a, t_stack_node *b)//Find `a` node's target in s
 		current_b = b; //Assign to `current_b` the current `b` node
 		while (current_b) //Iteratively search through all the nodes in stack `b` until the end of the stack is reached
 		{
-			if (current_b->value < a->value 
+			if (current_b->value < a->value
 				&& current_b->value > best_match_index) //Check if `b` node is smaller than `a` node && bigger than the closest smaller number so far
 			{
 				best_match_index = current_b->value; //If so, update the value of the closest smaller number so far
@@ -406,7 +408,7 @@ void	set_target_b(t_stack_node *a, t_stack_node *b)
 		current_a = a;
 		while (current_a)
 		{
-			if (current_a->value > b->value 
+			if (current_a->value > b->value
 				&& current_a->value < best_match_index)
 			{
 				best_match_index = current_a->value;
@@ -623,7 +625,7 @@ int	stack_len(t_stack_node *stack)
 	int	len;
 
 	len = 0;
-	if (!stack) 
+	if (!stack)
 		return (0);
 	while (stack)
 	{
@@ -672,7 +674,7 @@ t_stack_node	*find_min(t_stack_node *stack)
 		}
 		stack = stack->next;
 	}
-	return (min_node); 
+	return (min_node);
 }
 
 t_stack_node	*find_max(t_stack_node *stack)
