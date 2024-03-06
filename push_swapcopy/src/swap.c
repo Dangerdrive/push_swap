@@ -1,3 +1,17 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   swap.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: fde-alen <fde-alen@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/03/06 12:13:09 by fde-alen          #+#    #+#             */
+/*   Updated: 2024/03/06 20:07:10 by fde-alen         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "../inc/push_swap.h"
+
 /**
  * Swaps the top two elements of a given stack.
  *
@@ -7,7 +21,7 @@
  *
  * @param head Pointer to the top node of the stack to be swapped.
  */
-static void	swap(t_stack_node **head)
+void	swap(t_stack_node **head)
 {
 	if (!*head || !(*head)->next)
 		return ;
@@ -21,14 +35,12 @@ static void	swap(t_stack_node **head)
 }
 
 /**
- * Swaps the top two elements of stack 'a' and optionally prints the operation.
+ * Swaps the top two elements of stack 'a' and prints the operation.
  *
  * This function swaps the top two elements of stack 'a',
  *  effectively reversing their positions.
  *
  * @param a Pointer to the top node of stack 'a' to be swapped.
- * @param print If false, "sa\n" is printed to indicate the swap action;
- *  no output if true.
  */
 void	sa(t_stack_node	**a)
 {
@@ -37,14 +49,12 @@ void	sa(t_stack_node	**a)
 }
 
 /**
- * Swaps the top two elements of stack 'b' and optionally prints the operation.
+ * Swaps the top two elements of stack 'b' and prints the operation.
  *
  * This function swaps the top two elements of stack 'b',
  *  effectively reversing their positions.
  *
  * @param b Pointer to the top node of stack 'b' to be swapped.
- * @param print If false, "sb\n" is printed to indicate the swap action;
- *  no output if true.
  */
 void	sb(t_stack_node **b)
 {
@@ -61,8 +71,6 @@ void	sb(t_stack_node **b)
  *
  * @param a Pointer to the top node of stack 'a' to be swapped.
  * @param b Pointer to the top node of stack 'b' to be swapped.
- * @param print If false, "ss\n" is printed to indicate the swap action;
- *  no output if true.
  */
 void	ss(t_stack_node **a, t_stack_node **b)
 {

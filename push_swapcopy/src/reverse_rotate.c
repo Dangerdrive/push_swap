@@ -1,3 +1,17 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   reverse_rotate.c                                   :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: fde-alen <fde-alen@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/03/06 12:12:42 by fde-alen          #+#    #+#             */
+/*   Updated: 2024/03/06 20:35:40 by fde-alen         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "../inc/push_swap.h"
+
 /**
  * Performs a reverse rotation on a given stack.
  *
@@ -7,7 +21,7 @@
  *
  * @param stack Pointer to the top node of the stack to be reverse rotated.
  */
-static void	reverse_rotate(t_stack_node **stack)
+void	reverse_rotate(t_stack_node **stack)
 {
 	t_stack_node	*last;
 
@@ -22,12 +36,12 @@ static void	reverse_rotate(t_stack_node **stack)
 }
 
 /**
- * Performs a reverse rotate operation on stack 'a' and optionally prints the operation.
+ * Performs a reverse rotate operation on stack 'a' and prints the operation.
  *
- * This function applies a reverse rotation on stack 'a', moving the last element to the top of the stack.
+ * This function applies a reverse rotation on stack 'a',
+ * moving the last element to the top of the stack.
  *
  * @param a Pointer to the top node of stack 'a' to be reverse rotated.
- * @param print If false, "rra\n" is printed to indicate the reverse rotate action; no output if true.
  */
 void	rra(t_stack_node **a)
 {
@@ -36,12 +50,12 @@ void	rra(t_stack_node **a)
 }
 
 /**
- * Performs a reverse rotate operation on stack 'b' and optionally prints the operation.
+ * Performs a reverse rotate operation on stack 'b' and prints the operation.
  *
- * This function applies a reverse rotation on stack 'b', moving the last element to the top of the stack.
+ * This function applies a reverse rotation on stack 'b',
+ *  moving the last element to the top of the stack.
  *
  * @param b Pointer to the top node of stack 'b' to be reverse rotated.
- * @param print If false, "rra\n" is printed to indicate the reverse rotate action; no output if true.
  */
 void	rrb(t_stack_node **b)
 {
@@ -50,13 +64,14 @@ void	rrb(t_stack_node **b)
 }
 
 /**
- * Performs a reverse rotate operation on both stacks 'a' and 'b' and optionally prints the operation.
+ * Performs a reverse rotate operation on both stacks 'a' and 'b' 
+ * and prints the operation.
  *
- * This function applies a reverse rotation on stacks 'a' and 'b', moving the last element to the top of the stack.
+ * This function applies a reverse rotation on stacks 'a' and 'b',
+ *  moving the last element to the top of the stack.
  *
- * @param a Pointer to the top node of stacks 'a' and 'b' to be reverse rotated.
+ * @param a Pointer to the top node of stacks 'a' to be reverse rotated.
  * @param b Pointer to the top node of stack 'b' to be reverse rotated.
- * @param print If false, "rra\n" is printed to indicate the reverse rotate action; no output if true.
  */
 void	rrr(t_stack_node **a, t_stack_node **b)
 {

@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   push.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: fde-alen <fde-alen@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/03/06 12:12:37 by fde-alen          #+#    #+#             */
+/*   Updated: 2024/03/06 20:34:35 by fde-alen         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../inc/push_swap.h"
 
 /**
@@ -11,7 +23,7 @@
  * @param dest Pointer to the top of the destination stack.
  * @param src Pointer to the top of the source stack.
  */
-static void	push(t_stack_node **dest, t_stack_node **src)
+void	push(t_stack_node **dest, t_stack_node **src)
 {
 	t_stack_node	*node_to_push;
 
@@ -36,11 +48,11 @@ static void	push(t_stack_node **dest, t_stack_node **src)
 }
 
 /**
- * Pushes the top node from stack 'b' to stack 'a' and optionally prints the operation.
+ * Push to a.
+ * Pushes the top node from stack 'b' to stack 'a' and prints the operation.
  *
- * @param a Pointer to the top of stack 'a', which will receive the top node from stack 'b'.
- * @param b Pointer to the top of stack 'b', the source stack for the push operation.
- * @param print If false, prints "pa\n" to indicate the push action; does not print if true.
+ * @param a Pointer to the top of stack 'a'.
+ * @param b Pointer to the top of stack 'b'.
  */
 void	pa(t_stack_node **a, t_stack_node **b)
 {
@@ -49,11 +61,11 @@ void	pa(t_stack_node **a, t_stack_node **b)
 }
 
 /**
- * Pushes the top node from stack 'b' to stack 'a' and optionally prints the operation.
+ * Push to b.
+ * Pushes the top node from stack 'b' to stack 'a' and prints the operation.
  *
- * @param a Pointer to the top of stack 'a', which will receive the top node from stack 'b'.
- * @param b Pointer to the top of stack 'b', the source stack for the push operation.
- * @param print If false, prints "pa\n" to indicate the push action; does not print if true.
+ * @param a Pointer to the top of stack 'a'.
+ * @param b Pointer to the top of stack 'b'.
  */
 void	pb(t_stack_node **b, t_stack_node **a)
 {

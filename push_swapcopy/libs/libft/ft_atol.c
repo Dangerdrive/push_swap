@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   P1-21.ft_atoi.c                                    :+:      :+:    :+:   */
+/*   ft_atol.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: fde-alen <fde-alen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/05 12:58:52 by fde-alen          #+#    #+#             */
-/*   Updated: 2023/05/08 18:28:42 by fde-alen         ###   ########.fr       */
+/*   Updated: 2024/03/06 12:11:59 by fde-alen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,10 +24,10 @@
  * @param[in] nptr Pointer to the null-terminated string to be converted.
  * @return The long integer value of the number in the string.
  */
-long ft_atol(const char *nptr)
+long	ft_atol(const char *nptr)
 {
-	long result;
-	int sign;
+	long	result;
+	int		sign;
 
 	result = 0;
 	sign = 1;

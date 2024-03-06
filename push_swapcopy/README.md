@@ -14,3 +14,34 @@ set args 42
 which command is used to set args in gdb?
 ```
 ```gdb
+
+
+
+*
+ * Efficiently sorts stack 'a' using a combination of push, swap, rotate, and reverse rotate operations.
+ *
+ * The algorithm optimizes sorting by reducing the problem size initially. It starts by checking if
+ * stack 'a' has more than three elements that are not in order. If so, it pushes the two top elements
+ * from stack 'a' to stack 'b', reducing the immediate sorting complexity. This step is repeated until
+ * there are only three elements left in stack 'a', or stack 'a' is already sorted.
+ *
+ * With stack 'a' minimized to three elements, it employs the `sort_three_nodes` function to sort
+ * these elements using the least number of operations. This function is optimized for sorting
+ * three elements through a predefined sequence of swaps and rotates.
+ *
+ * The next phase involves transferring the elements from stack 'b' back to stack 'a'. Before each
+ * push operation, the algorithm prepares both stacks: it calculates and assigns target positions
+ * for elements in stack 'b' relative to stack 'a', and identifies the optimal sequence of operations
+ * to minimize the total number of moves required to sort the stack. Each element from stack 'b' is
+ * then moved back to stack 'a', ensuring that stack 'a' remains sorted after each operation.
+ *
+ * The final adjustment is made to ensure the smallest element in stack 'a' ends up at the top of the
+ * stack. This is achieved by rotating stack 'a' until the smallest element reaches the top, concluding
+ * the sorting process.
+ *
+ * Throughout the sorting, the algorithm dynamically updates each node's positional information and
+ * calculates the most efficient path to achieve a sorted stack, optimizing for both space and time
+ * complexity.
+ *
+ * @param a Pointer to the top node of stack 'a', which is to be sorted.
+ * @param b Pointer to the top node of stack 'b', used as a temporary storage to simplify sorting of stack 'a'.

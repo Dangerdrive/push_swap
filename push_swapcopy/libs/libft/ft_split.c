@@ -6,7 +6,7 @@
 /*   By: fde-alen <fde-alen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/08 17:57:21 by fde-alen          #+#    #+#             */
-/*   Updated: 2024/03/03 16:17:53 by fde-alen         ###   ########.fr       */
+/*   Updated: 2024/03/06 19:02:11 by fde-alen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ static char	*copy_word(char *s, size_t len)
 	return (word);
 }
 
-static void	*ft_free_split(char **split, size_t len)
+void	*ft_free_split(char **split, size_t len)
 {
 	size_t	i;
 

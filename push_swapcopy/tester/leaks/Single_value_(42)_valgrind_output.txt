@@ -1,30 +1,38 @@
-==110010== Memcheck, a memory error detector
-==110010== Copyright (C) 2002-2017, and GNU GPL'd, by Julian Seward et al.
-==110010== Using Valgrind-3.15.0 and LibVEX; rerun with -h for copyright info
-==110010== Command: ./push_swap 42
-==110010== 
-==110010== 
-==110010== HEAP SUMMARY:
-==110010==     in use at exit: 19 bytes in 2 blocks
-==110010==   total heap usage: 2 allocs, 0 frees, 19 bytes allocated
-==110010== 
-==110010== 3 bytes in 1 blocks are indirectly lost in loss record 1 of 2
-==110010==    at 0x483B7F3: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
-==110010==    by 0x4035FC: copy_word (in /nfs/homes/fde-alen/Documents/Projects/push_swap/push_swapcopy/push_swap)
-==110010==    by 0x403488: ft_split (in /nfs/homes/fde-alen/Documents/Projects/push_swap/push_swapcopy/push_swap)
-==110010==    by 0x4025C2: main (push_swap.c:1122)
-==110010== 
-==110010== 19 (16 direct, 3 indirect) bytes in 1 blocks are definitely lost in loss record 2 of 2
-==110010==    at 0x483B7F3: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
-==110010==    by 0x4033B6: ft_split (in /nfs/homes/fde-alen/Documents/Projects/push_swap/push_swapcopy/push_swap)
-==110010==    by 0x4025C2: main (push_swap.c:1122)
-==110010== 
-==110010== LEAK SUMMARY:
-==110010==    definitely lost: 16 bytes in 1 blocks
-==110010==    indirectly lost: 3 bytes in 1 blocks
-==110010==      possibly lost: 0 bytes in 0 blocks
-==110010==    still reachable: 0 bytes in 0 blocks
-==110010==         suppressed: 0 bytes in 0 blocks
-==110010== 
-==110010== For lists of detected and suppressed errors, rerun with: -s
-==110010== ERROR SUMMARY: 1 errors from 1 contexts (suppressed: 0 from 0)
+==161869== Memcheck, a memory error detector
+==161869== Copyright (C) 2002-2017, and GNU GPL'd, by Julian Seward et al.
+==161869== Using Valgrind-3.15.0 and LibVEX; rerun with -h for copyright info
+==161869== Command: ./push_swap 42
+==161869== 
+==161869== Conditional jump or move depends on uninitialised value(s)
+==161869==    at 0x401404: populate_stack_a (populate_stack_a.c:143)
+==161869==    by 0x4019A4: main (push_swap.c:92)
+==161869==  Uninitialised value was created by a heap allocation
+==161869==    at 0x483B7F3: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==161869==    by 0x403416: ft_split (in /nfs/homes/fde-alen/Documents/Projects/push_swap/push_swapcopy/push_swap)
+==161869==    by 0x40198A: main (push_swap.c:91)
+==161869== 
+==161869== 
+==161869== HEAP SUMMARY:
+==161869==     in use at exit: 19 bytes in 2 blocks
+==161869==   total heap usage: 2 allocs, 0 frees, 19 bytes allocated
+==161869== 
+==161869== 3 bytes in 1 blocks are indirectly lost in loss record 1 of 2
+==161869==    at 0x483B7F3: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==161869==    by 0x40364C: copy_word (in /nfs/homes/fde-alen/Documents/Projects/push_swap/push_swapcopy/push_swap)
+==161869==    by 0x4034E8: ft_split (in /nfs/homes/fde-alen/Documents/Projects/push_swap/push_swapcopy/push_swap)
+==161869==    by 0x40198A: main (push_swap.c:91)
+==161869== 
+==161869== 19 (16 direct, 3 indirect) bytes in 1 blocks are definitely lost in loss record 2 of 2
+==161869==    at 0x483B7F3: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==161869==    by 0x403416: ft_split (in /nfs/homes/fde-alen/Documents/Projects/push_swap/push_swapcopy/push_swap)
+==161869==    by 0x40198A: main (push_swap.c:91)
+==161869== 
+==161869== LEAK SUMMARY:
+==161869==    definitely lost: 16 bytes in 1 blocks
+==161869==    indirectly lost: 3 bytes in 1 blocks
+==161869==      possibly lost: 0 bytes in 0 blocks
+==161869==    still reachable: 0 bytes in 0 blocks
+==161869==         suppressed: 0 bytes in 0 blocks
+==161869== 
+==161869== For lists of detected and suppressed errors, rerun with: -s
+==161869== ERROR SUMMARY: 2 errors from 2 contexts (suppressed: 0 from 0)
