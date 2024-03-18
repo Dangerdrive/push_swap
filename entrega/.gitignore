@@ -13,7 +13,7 @@
 *.exe
 push_swap
 checker_linux
-tester
+#tester
 
 
 # Temp files
