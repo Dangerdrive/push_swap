@@ -1,1 +1,0 @@
-/usr/bin/c++ CMakeFiles/NodeCreationTests.dir/tests/unit/NodeCreationTests.cpp.o -o NodeCreationTests  -lgtest -lgtest_main 
