@@ -1,5 +1,18 @@
 #!/bin/bash
 
+#Use:
+#copy stuff to your push directory.
+
+#You can add a rule for Makefile
+#test:
+#	cd tester/ && ./test
+
+#This tester dont test values within a string. 
+#For instance, tests are not equivalent of subject tests, as they are within a string
+	#example: ARG="4 67 3 87 23"; ./push_swap $ARG | ./checker_linux $ARG
+#range for acceptation are not precise, just the upper limit. 
+
+
 PUSH_SWAP="./push_swap"
 CHECKER="./checker_linux"
 

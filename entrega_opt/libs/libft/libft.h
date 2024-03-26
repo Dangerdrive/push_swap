@@ -6,7 +6,7 @@
 /*   By: fde-alen <fde-alen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/25 13:20:58 by fde-alen          #+#    #+#             */
-/*   Updated: 2024/03/06 18:01:39 by fde-alen         ###   ########.fr       */
+/*   Updated: 2024/03/26 13:44:35 by fde-alen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,6 +61,7 @@ void				ft_putstr_fd(char *str, int fd);
 void				ft_putstr(char *str);
 char				**ft_split(char *str, char c);
 void				*ft_free_split(char **split, size_t len);
+int					ft_strarray_len(char **tab);
 char				*ft_strchr(const char *s, int c);
 char				*ft_strdup(const char *src);
 void				ft_string_toupper(char *str);

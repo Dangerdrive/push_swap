@@ -6,7 +6,7 @@
 /*   By: fde-alen <fde-alen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/06 12:23:52 by fde-alen          #+#    #+#             */
-/*   Updated: 2024/03/18 10:42:46 by fde-alen         ###   ########.fr       */
+/*   Updated: 2024/03/26 13:55:04 by fde-alen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,6 +85,7 @@ void			pb(t_stack_node **b, t_stack_node **a);
 
 //***Algorithm
 void			sort_three_nodes(t_stack_node **a);
-void			sort_stack_a(t_stack_node **a, t_stack_node **b);
+void			sort(t_stack_node **a, t_stack_node **b);
+//void			sort_stack_a(t_stack_node **a, t_stack_node **b);
 
 #endif

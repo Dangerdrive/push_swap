@@ -6,7 +6,7 @@
 /*   By: fde-alen <fde-alen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/06 12:12:33 by fde-alen          #+#    #+#             */
-/*   Updated: 2024/03/07 13:58:08 by fde-alen         ###   ########.fr       */
+/*   Updated: 2024/03/26 13:56:44 by fde-alen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,25 +30,21 @@ int	main(int argc, char **argv)
 {
 	t_stack_node	*a;
 	t_stack_node	*b;
+	char			**tab;
 
+	tab = NULL;
 	a = NULL;
 	b = NULL;
 	if (argc == 1 || (argc == 2 && !argv[1][0]))
 		return (1);
 	else if (argc == 2)
-		argv = ft_split(argv[1], ' ');
-	populate_stack_a(&a, argv + 1);
-	if (!is_stack_sorted(a))
-	{
-		if (stack_len(a) == 2)
-			sa(&a);
-		else if (stack_len(a) == 3)
-			sort_three_nodes(&a);
-		else
-			sort_stack_a(&a, &b);
-	}
+		tab = ft_split(argv[1], ' ');
+	else if (argc > 2)
+		tab = &argv[1];
+	populate_stack_a(&a, tab);
+	sort(&a, &b);
 	free_stack(&a);
 	if (argc == 2)
-		ft_free_split(argv, 1);
+		ft_free_split(tab, ft_strarray_len(tab));
 	return (EXIT_SUCCESS);
 }

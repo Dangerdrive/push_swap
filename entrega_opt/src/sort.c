@@ -6,7 +6,7 @@
 /*   By: fde-alen <fde-alen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/06 12:12:50 by fde-alen          #+#    #+#             */
-/*   Updated: 2024/03/06 15:54:47 by fde-alen         ###   ########.fr       */
+/*   Updated: 2024/03/26 13:56:16 by fde-alen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -138,4 +138,17 @@ void	sort_stack_a(t_stack_node **a, t_stack_node **b)
 	}
 	set_positions(*a);
 	rotate_min_to_top(a);
+}
+
+void	sort(t_stack_node **a, t_stack_node **b)
+{
+	if (!is_stack_sorted(*a))
+	{
+		if (stack_len(*a) == 2)
+			sa(a);
+		else if (stack_len(*a) == 3)
+			sort_three_nodes(a);
+		else
+			sort_stack_a(a, b);
+	}
 }

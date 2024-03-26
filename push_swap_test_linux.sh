@@ -23,7 +23,7 @@ rm -rf 0
 
 # -=-=-=-=-	Control errors -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=- #
 
-FILE=$PWD/entrega/push_swap
+FILE=$PWD/entrega_opt/push_swap
 FICHERO=test_check.txt
 
 if [ -f "$FILE" ]; then
