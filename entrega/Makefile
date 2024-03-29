@@ -2,7 +2,7 @@
 MAKEFLAGS	+=	--no-print-directory
 
 CC			=	cc
-CFLAGS		=	-Werror -Wextra -Wall -Ilibft -Ift_printf
+CFLAGS		=	-Werror -Wextra -Wall -Ilibft -Ift_printf -g
 NAME		=	push_swap
 BONUS		=	checker
 

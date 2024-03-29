@@ -6,7 +6,7 @@
 /*   By: fde-alen <fde-alen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/06 13:03:47 by fde-alen          #+#    #+#             */
-/*   Updated: 2024/03/06 17:04:02 by fde-alen         ###   ########.fr       */
+/*   Updated: 2024/03/27 14:46:31 by fde-alen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -124,31 +124,31 @@ void	add_node_back(t_stack_node **stack, int n)
 }
 
 /**
- * Populates stack 'a' with integers parsed from argv strings.
+ * Populates stack 'a' with integers parsed from tab strings.
  *
- * Iterates over argv, converting each string to a long. Validates the
+ * Iterates over tab, converting each string to a long. Validates the
  * converted value for number format, range within INT_MIN and INT_MAX, and
  * uniqueness within the stack. On validation failure, frees resources and
  * exits. Successfully parsed integers are appended to stack 'a'.
  *
  * @param a Double pointer to the top of stack 'a'.
- * @param argv Null-terminated array of strings representing integers.
+ * @param tab Null-terminated array of strings representing integers.
  */
-void	populate_stack_a(t_stack_node **a, char **argv)
+void	populate_stack_a(t_stack_node **a, int argc, char **tab)
 {
 	long	value;
 	int		i;
 
 	i = 0;
-	while (argv[i])
+	while (tab[i])
 	{
-		if (!(is_valid_number(argv[i])))
-			exit_with_error(a, true);
-		value = ft_atol(argv[i]);
+		if (!(is_valid_number(tab[i])))
+			exit_with_error(a, true, argc, tab);
+		value = ft_atol(tab[i]);
 		if (value > INT_MAX || value < INT_MIN)
-			exit_with_error(a, true);
+			exit_with_error(a, true, argc, tab);
 		if (has_duplicate(*a, (int)value))
-			exit_with_error(a, true);
+			exit_with_error(a, true, argc, tab);
 		add_node_back(a, (int)value);
 		i++;
 	}

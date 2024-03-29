@@ -6,7 +6,7 @@
 /*   By: fde-alen <fde-alen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/06 12:23:52 by fde-alen          #+#    #+#             */
-/*   Updated: 2024/03/26 13:55:04 by fde-alen         ###   ########.fr       */
+/*   Updated: 2024/03/27 14:50:43 by fde-alen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,8 @@ typedef struct s_stack_node
 bool			is_valid_number(char *str_n);
 bool			has_duplicate(t_stack_node *a, int n);
 void			free_stack(t_stack_node **stack);
-void			exit_with_error(t_stack_node **a, bool print);
+void			exit_with_error(t_stack_node **a, bool	print,
+					int ac, char **av);
 
 //***Sort utils
 void			rotate_both(t_stack_node **a, t_stack_node **b,
@@ -46,7 +47,7 @@ void			set_positions(t_stack_node *stack);
 void			rotate_min_to_top(t_stack_node **a);
 
 //***Stack initiation
-void			populate_stack_a(t_stack_node **a, char **argv);
+void			populate_stack_a(t_stack_node **a, int argc, char **tab);
 void			add_node_back(t_stack_node **stack, int n);
 void			init_node(t_stack_node *stack);
 

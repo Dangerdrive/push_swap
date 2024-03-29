@@ -6,7 +6,7 @@
 /*   By: fde-alen <fde-alen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/06 12:12:33 by fde-alen          #+#    #+#             */
-/*   Updated: 2024/03/18 11:00:53 by fde-alen         ###   ########.fr       */
+/*   Updated: 2024/03/27 14:59:55 by fde-alen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,9 +54,11 @@ void	free_stack(t_stack_node **stack)
  * @param a Double pointer to the top node of the stack that needs to be freed
  *          due to an error condition.
  */
-void	exit_with_error(t_stack_node **a, bool	print)
+void	exit_with_error(t_stack_node **a, bool	print, int ac, char **tab)
 {
 	free_stack(a);
+	if (ac == 2)
+		ft_free_split(tab, ft_strarray_len(tab));
 	if (print == true)
 		ft_printf("Error\n");
 	exit(EXIT_FAILURE);

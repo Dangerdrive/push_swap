@@ -6,7 +6,7 @@
 /*   By: fde-alen <fde-alen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/06 14:39:15 by fde-alen          #+#    #+#             */
-/*   Updated: 2024/03/06 19:54:00 by fde-alen         ###   ########.fr       */
+/*   Updated: 2024/03/29 12:49:31 by fde-alen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@
 bool	is_stack_sorted(t_stack_node *stack)
 {
 	if (!stack)
-		return (1);
+		return (false);
 	while (stack->next)
 	{
 		if (stack->value > stack->next->value)

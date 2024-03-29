@@ -6,42 +6,48 @@
 /*   By: fde-alen <fde-alen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/06 16:42:41 by fde-alen          #+#    #+#             */
-/*   Updated: 2024/03/07 13:55:20 by fde-alen         ###   ########.fr       */
+/*   Updated: 2024/03/29 14:18:21 by fde-alen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/push_swap.h"
 
 /**
- * Populates stack 'a' with integers parsed from argv strings.
+ * Populates stack 'a' with integers parsed from tab strings.
  *
- * Iterates over argv, converting each string to a long. Validates the
+ * Iterates over tab, converting each string to a long. Validates the
  * converted value for number format, range within INT_MIN and INT_MAX, and
  * uniqueness within the stack. On validation failure, frees resources and
  * exits. Successfully parsed integers are appended to stack 'a'.
  * This bonus version does not print errors.
  *
  * @param a Double pointer to the top of stack 'a'.
- * @param argv Null-terminated array of strings representing integers.
+ * @param tab Null-terminated array of strings representing integers.
  */
-static void	bonus_populate_stack_a(t_stack_node **a, char **argv)
-{
-	long	value;
-	int		i;
+// static void	bonus_populate_stack_a(t_stack_node **a, int argc, char **tab)
+// {
+// 	long	value;
+// 	int		i;
 
-	i = 0;
-	while (argv[i])
-	{
-		if (!(is_valid_number(argv[i])))
-			exit_with_error(a, false);
-		value = ft_atol(argv[i]);
-		if (value > INT_MAX || value < INT_MIN)
-			exit_with_error(a, false);
-		if (has_duplicate(*a, (int)value))
-			exit_with_error(a, false);
-		add_node_back(a, (int)value);
-		i++;
-	}
+// 	i = 0;
+// 	while (tab[i])
+// 	{
+// 		if (!(is_valid_number(tab[i])))
+// 			exit_with_error(a, true, argc, tab);
+// 		value = ft_atol(tab[i]);
+// 		if (value > INT_MAX || value < INT_MIN)
+// 			exit_with_error(a, true, argc, tab);
+// 		if (has_duplicate(*a, (int)value))
+// 			exit_with_error(a, true, argc, tab);
+// 		add_node_back(a, (int)value);
+// 		i++;
+// 	}
+// }
+void	error_exit(char *line, int argc)
+{
+	write(STDERR_FILENO, "Error\n", 7);
+	free(line);
+	exit(EXIT_FAILURE);
 }
 
 /**
@@ -56,7 +62,7 @@ static void	bonus_populate_stack_a(t_stack_node **a, char **argv)
  * @param b Pointer to the top of stack 'b'.
  * @param line The current command line being processed.
  */
-static void	check_rotates(t_stack_node **a, t_stack_node **b, char *line)
+static void	check_rotates(t_stack_node **a, t_stack_node **b, char *line, int argc)
 {
 	if (line[2] == 'a')
 		reverse_rotate(a);
@@ -79,6 +85,8 @@ static void	check_rotates(t_stack_node **a, t_stack_node **b, char *line)
 	else
 	{
 		write(STDERR_FILENO, "Error\n", 7);
+		free(line);
+		
 		exit(EXIT_FAILURE);
 	}
 }
@@ -96,7 +104,7 @@ static void	check_rotates(t_stack_node **a, t_stack_node **b, char *line)
  * @param line The command line to be processed.
  * @return Returns the next command line from input for further processing.
  */
-static char	*check_commands(t_stack_node **a, t_stack_node **b, char *line)
+static char	*check_commands(t_stack_node **a, t_stack_node **b, char *line, int argc)
 {
 	if (line[0] == 's' && line[1] == 'a' && line[2] == '\n')
 		swap(a);
@@ -116,6 +124,8 @@ static char	*check_commands(t_stack_node **a, t_stack_node **b, char *line)
 	else
 	{
 		write(STDERR_FILENO, "Error\n", 7);
+		free(line);
+		
 		exit(EXIT_FAILURE);
 	}
 	return (get_next_line(0));
@@ -173,14 +183,19 @@ int	main(int argc, char **argv)
 	t_stack_node	*a;
 	t_stack_node	*b;
 	char			*line;
+	char			**tab;
 
+	tab = NULL;
 	a = NULL;
 	b = NULL;
 	if (argc == 1 || (argc == 2 && !argv[1][0]))
 		return (1);
 	else if (argc == 2)
-		argv = ft_split(argv[1], ' ');
-	bonus_populate_stack_a(&a, argv + 1);
+		tab = ft_split(argv[1], ' ');
+	else if (argc > 2)
+		tab = &argv[1];
+	//bonus_populate_stack_a(&a, argc, tab);
+	populate_stack_a(&a, argc, tab);
 	line = get_next_line(0);
 	if (!line && !is_stack_sorted(a))
 		ft_printf("KO\n");
@@ -188,9 +203,8 @@ int	main(int argc, char **argv)
 		ft_printf("KO\n");
 	else
 		validate_and_print_result(&a, &b, line);
-	free_stack(&b);
 	free_stack(&a);
 	if (argc == 2)
-		ft_free_split(argv, 1);
+		ft_free_split(tab, ft_strarray_len(tab));
 	return (EXIT_SUCCESS);
 }

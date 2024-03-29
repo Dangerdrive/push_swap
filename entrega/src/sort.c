@@ -6,7 +6,7 @@
 /*   By: fde-alen <fde-alen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/06 12:12:50 by fde-alen          #+#    #+#             */
-/*   Updated: 2024/03/26 13:56:16 by fde-alen         ###   ########.fr       */
+/*   Updated: 2024/03/26 17:38:14 by fde-alen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -140,6 +140,18 @@ void	sort_stack_a(t_stack_node **a, t_stack_node **b)
 	rotate_min_to_top(a);
 }
 
+/**
+ * Initiates the sorting process.
+ *
+ * This function checks if stack 'a' is already sorted. If not, it applies
+ * different sorting strategies based on the stack's size: 
+ * - For 2 elements, it simply swaps them if needed.
+ * - For 3 elements, it sorts them using a sequence of operations.
+ * - For more than 3 elements, it employs a comprehensive sorting algorithm.
+ *
+ * @param a Pointer to the top node of stack 'a'.
+ * @param b Pointer to the top node of stack 'b'.
+ */
 void	sort(t_stack_node **a, t_stack_node **b)
 {
 	if (!is_stack_sorted(*a))

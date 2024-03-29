@@ -6,7 +6,7 @@
 /*   By: fde-alen <fde-alen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/06 12:12:33 by fde-alen          #+#    #+#             */
-/*   Updated: 2024/03/26 13:56:44 by fde-alen         ###   ########.fr       */
+/*   Updated: 2024/03/27 15:21:44 by fde-alen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,8 +40,10 @@ int	main(int argc, char **argv)
 	else if (argc == 2)
 		tab = ft_split(argv[1], ' ');
 	else if (argc > 2)
+	{
 		tab = &argv[1];
-	populate_stack_a(&a, tab);
+	}
+	populate_stack_a(&a, argc, tab);
 	sort(&a, &b);
 	free_stack(&a);
 	if (argc == 2)
