@@ -6,7 +6,7 @@
 /*   By: fde-alen <fde-alen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/06 16:42:41 by fde-alen          #+#    #+#             */
-/*   Updated: 2024/03/29 14:18:21 by fde-alen         ###   ########.fr       */
+/*   Updated: 2024/03/29 18:39:24 by fde-alen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,12 +43,12 @@
 // 		i++;
 // 	}
 // }
-void	error_exit(char *line, int argc)
-{
-	write(STDERR_FILENO, "Error\n", 7);
-	free(line);
-	exit(EXIT_FAILURE);
-}
+// void	error_exit(char *line, int argc)
+// {
+// 	write(STDERR_FILENO, "Error\n", 7);
+// 	free(line);
+// 	exit(EXIT_FAILURE);
+// }
 
 /**
  * Validates command execution results on stacks and prints the outcome.
@@ -62,7 +62,7 @@ void	error_exit(char *line, int argc)
  * @param b Pointer to the top of stack 'b'.
  * @param line The current command line being processed.
  */
-static void	check_rotates(t_stack_node **a, t_stack_node **b, char *line, int argc)
+static void	check_rotates(t_stack_node **a, t_stack_node **b, char *line)
 {
 	if (line[2] == 'a')
 		reverse_rotate(a);
@@ -86,7 +86,7 @@ static void	check_rotates(t_stack_node **a, t_stack_node **b, char *line, int ar
 	{
 		write(STDERR_FILENO, "Error\n", 7);
 		free(line);
-		
+		free_stack(a);
 		exit(EXIT_FAILURE);
 	}
 }
@@ -104,7 +104,7 @@ static void	check_rotates(t_stack_node **a, t_stack_node **b, char *line, int ar
  * @param line The command line to be processed.
  * @return Returns the next command line from input for further processing.
  */
-static char	*check_commands(t_stack_node **a, t_stack_node **b, char *line, int argc)
+static char	*check_commands(t_stack_node **a, t_stack_node **b, char *line)
 {
 	if (line[0] == 's' && line[1] == 'a' && line[2] == '\n')
 		swap(a);
@@ -125,7 +125,7 @@ static char	*check_commands(t_stack_node **a, t_stack_node **b, char *line, int 
 	{
 		write(STDERR_FILENO, "Error\n", 7);
 		free(line);
-		
+		free_stack(a);
 		exit(EXIT_FAILURE);
 	}
 	return (get_next_line(0));
@@ -143,12 +143,13 @@ static char	*check_commands(t_stack_node **a, t_stack_node **b, char *line, int 
  * @param b Pointer to the top of stack 'b'.
  * @param line The current command line being processed.
  */
-
-void	validate_and_print_result(t_stack_node **a, t_stack_node **b,
+void	validate_and_print_result(t_stack_node **a,
 			char *line)
 {
-	char	*tmp;
+	char			*tmp;
+	t_stack_node	**b;
 
+	b = NULL;
 	while (line && *line != '\n')
 	{
 		tmp = line;
@@ -181,13 +182,11 @@ void	validate_and_print_result(t_stack_node **a, t_stack_node **b,
 int	main(int argc, char **argv)
 {
 	t_stack_node	*a;
-	t_stack_node	*b;
 	char			*line;
 	char			**tab;
 
 	tab = NULL;
 	a = NULL;
-	b = NULL;
 	if (argc == 1 || (argc == 2 && !argv[1][0]))
 		return (1);
 	else if (argc == 2)
@@ -202,9 +201,10 @@ int	main(int argc, char **argv)
 	else if (!line && is_stack_sorted(a))
 		ft_printf("KO\n");
 	else
-		validate_and_print_result(&a, &b, line);
+		validate_and_print_result(&a, line);
 	free_stack(&a);
-	if (argc == 2)
-		ft_free_split(tab, ft_strarray_len(tab));
+	free(line);
+	// if (argc == 2)
+	// 	ft_free_split(tab, ft_strarray_len(tab));
 	return (EXIT_SUCCESS);
 }

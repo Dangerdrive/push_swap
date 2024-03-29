@@ -6,7 +6,7 @@
 /*   By: fde-alen <fde-alen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/06 13:03:47 by fde-alen          #+#    #+#             */
-/*   Updated: 2024/03/27 14:46:31 by fde-alen         ###   ########.fr       */
+/*   Updated: 2024/03/29 15:19:21 by fde-alen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -152,4 +152,6 @@ void	populate_stack_a(t_stack_node **a, int argc, char **tab)
 		add_node_back(a, (int)value);
 		i++;
 	}
+	if (argc == 2)
+		ft_free_split(tab, ft_strarray_len(tab));
 }
