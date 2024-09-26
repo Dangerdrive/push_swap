@@ -1,133 +1,42 @@
-# push_swap
+<p align="center">
+  <a href="https://github.com/Dangerdrive/push_swap">
+    <img src="./images/42projects/push_swapn.png" alt="Push Swap" title="Push Swap" width="150" height="150"/>
+  </a>
+</p>
 
-For this project I included a few other goals for me: learn some test-driven development and how to be less reliant on mouse. 
+# Push_swap
 
-I started using IntelliJ Clion as IDE, but configured keymap to be as VSCode so going back and forth between IDEs don't bring me much trouble.
+The **Push_swap** project at 42 School challenges students to sort a stack of numbers using a limited set of operations. The goal is to achieve this with the fewest possible moves while focusing on efficiency and algorithmic optimization.
 
-This the keybindings I kept note:
+## Key Objectives
 
-``alt + 1``: alternates between project and editor
+- **Sorting Two Stacks**:  
+  - You are provided with two stacks:  
+    - `A` (containing unsorted numbers).  
+    - `B` (initially empty).  
+  - The objective is to sort the numbers in stack `A` using stack `B` for auxiliary operations.
 
-``alt + Insert``: New... (file, directory, etc)
+- **Operations**:  
+  A limited set of operations is allowed to manipulate the stacks:  
+  - `sa`, `sb`, `ss`: Swap the first two elements of a stack.  
+  - `ra`, `rb`, `rr`: Rotate the stack (top element goes to the bottom).  
+  - `rra`, `rrb`, `rrr`: Reverse rotate the stack (bottom element goes to the top).  
+  - `pa`, `pb`: Push the top element from one stack to the other.
 
-``ctrl + K``: commit dialog
+- **Efficiency**:  
+  - The challenge is to sort the stack with the minimum number of operations.  
+  - You must implement an optimized sorting algorithm, focusing on minimizing time complexity and operation count.
 
+- **Algorithm Design**:  
+  - Understanding of efficient sorting algorithms is key, including:  
+    - Quick Sort, Merge Sort, Radix Sort, or a custom approach.  
+  - The solution should handle different stack sizes efficiently (small and large sets).
 
-clion . & disown
+## Learning Outcomes
 
+- Enhance problem-solving skills through algorithm design.
+- Improve proficiency in minimizing operations and optimizing time complexity.
+- Gain a deeper understanding of data structures like stacks and how to manipulate them.
+- Analyze and implement algorithms for optimal performance in various cases.
 
-```bash
-docker build -t push_swap_test_image .
-```
-docker build is the command to build a Docker image.
--t push_swap_test_image assigns a tag/name to your image, in this case, push_swap_test_image.
-you will do this once (except if you change container's configuration).
-
-```bash
-docker run -it -v $(pwd):/push_swap_test push_swap_test_image
-```
-docker run creates and starts a Docker container from the specified image.
--it allows you to interact with the container via the terminal.
--v $(pwd):/push_swap_test mounts your current working directory (presumably where your push_swap_test project files are) to the /push_swap_test directory in the container. This allows for two-way file synchronization: changes made in the container's /push_swap_test directory will reflect in your host machine's directory, and vice versa.
-push_swap_test_image is the name of the Docker image to use, as tagged earlier.
-
-To be able to use google test I had to set a Dockerfile
-1- Creates the image in docker, it must be run only once:
-docker build -t gtest .
-
-2- Create container:
-docker run -v .:/push_swap_test -it gtest
-
-3- Execute the tests:
-make runTests
-
-docker login
-docker tag push_swap_test_image dangerdrive/push_swap_gtest:latest
-docker push dangerdrive/push_swap_gtest:latest
-docker pull dangerdrive/push_swap_gtest:latest
-
-
-
-
-https://www.youtube.com/watch?v=wRvipSG4Mmk
-"turk algorythim" 
-we aim for just 3 positions on stack a.
-so if stack a size > 4, the first step is to move the two first positions from a to b.
-
-then for each a node you search for a target node in stack b.
-you search for the smallest closest number in b stack. If not found, the target node is the max value.
-
-cost analysis
-we need to check which move is 'cheaper'.
-To move a node from stack a to stack b, we would need to move the node to the top, and move its target to the top.
-
-push cost = operations to bring a node on top + operation to bring its target node to top
-
-so for instance, if the node we are calculating the cost is already on the top and its target is already on top on stack b, the cost will be 0.
-If the cost is 0, there is no need to calculate the cost for the rest of the nodes, we can just push that node to stack b.
-
-find target in b
-    find closest smaller
-    if not found, target = max
-
-find target in a
-    find closest bigger
-    if not found, target = min
-
-
-push cost on stack
-    if first
-        cost = 0;
-    if last node
-        cost = 1;
-    if second node;
-        cost = 1;
-
-
-push cost (node, target)
-    push cost on stack(node) + push cost on stack (target)
-
-push to b(node)
-while number of nodes in stack a is > 3
-    find node's target
-    check push cost
-        if node's target = 0 
-            push
-        push cheapest
-sort 3
-
-push to a    
-
-put smallest on the top
-
-
-
-
-
-Pseudocode:
-
-// Initialize stack pointers
-// Declare and set two pointers for stack 'a' and 'b' to NULL to represent empty stacks
-
-// Validate input count
-// Ensure the number of command line arguments is greater than one (excluding the program name)
-// Return an error if the argument count is insufficient
-
-// Process input
-// Account for input given directly as arguments or as a single string needing separation
-// If input is a single string, use 'split()' to divide it into individual numbers
-
-// Populate stack 'a'
-// For each number in the input:
-//   Validate the number, ensuring it is a valid integer and within the range of 'long int'
-//   Check for duplicates and correct syntax (only digits, '-', '+', and no leading zeros)
-//   If any validations fail, deallocate stack 'a' and return an error
-//   Otherwise, create a new node with the number and append it to stack 'a'
-
-// Verify if stack 'a' is pre-sorted
-// If stack 'a' is not sorted:
-//   Apply the appropriate sorting algorithm based on the number of nodes:
-//     If there are only two nodes, swap them to sort
-//     If there are three nodes, use a 'sort_three' algorithm
-//     For more than three nodes, apply the 'Turk Algorithm' for sorting
-    
+This project strengthens your grasp of sorting algorithms and algorithmic efficiency while emphasizing clean, optimized code.
