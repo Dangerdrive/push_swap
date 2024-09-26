@@ -1,8 +1,6 @@
 <p align="center">
-  <a href="https://github.com/Dangerdrive/push_swap">
-    <img src="https://raw.githubusercontent.com/Dangerdrive/Dangerdrive/main/images/42projects/push_swapn.png" alt="Push Swap" title="Push Swap" width="150" height="150"/>
-  </a>
-</p>
+  <img src="https://raw.githubusercontent.com/Dangerdrive/Dangerdrive/main/images/42projects/push_swapn.png" alt="Push Swap" title="Push Swap" width="150" height="150"/>
+  </p>
 
 # Push_swap
 
